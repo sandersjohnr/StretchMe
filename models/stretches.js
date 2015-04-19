@@ -14,7 +14,7 @@ module.exports = function(sequelize, DataTypes) {
       type: DataTypes.STRING,
       allowNull: false,
       validate: {
-        notEmpty: { msg: 'Stretch intro cannot be empty'}
+        // notEmpty: { msg: 'Stretch intro cannot be empty'}
       }
     },
     instruction: {
@@ -42,7 +42,7 @@ module.exports = function(sequelize, DataTypes) {
         isInt: { msg: 'Rep time must be an integer'}
       }
     },
-    reps: {
+    rep_num: {
       type: DataTypes.INTEGER,
       allowNull: false,
       validate: {
