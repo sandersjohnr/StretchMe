@@ -10,6 +10,8 @@ var express       = require('express'),
     stretchRouter = require('./routers/stretch_router.js');
 
 var User = models.users;
+var Routine = models.routines;
+var Stretch = models.stretches;
     
 var app = express();
 // var routers       = require('./routers')(app);
@@ -35,17 +37,28 @@ app.use('/stretches', stretchRouter);
 // DEBUG SESSION ##########################
 app.get('/debug_session', function (req, res) {
   res.send(req.session);
-})
+});
 
-// USER AUTH ##############################
+
+// USER AUTH METHODS ##############################
+var restrictAccess = function(req, res, next) {
+  var sessionID = parseInt( req.session.currentUser );
+  var reqID = parseInt( req.params.id );
+  sessionID === reqID ? next() : res.status(401).send({err: 401, msg: 'YOU SHALL NOT PASS!'});
+};
+
+var authenticate = function(req, res, next) {
+  req.session.currentUser ? next() : res.status(400).send({err: 400, msg: 'LOGIN TROLL'});
+};
+
+// USER ROUTES ####################################
 app.get('/users', function (req, res) {
   User
-  .findAll()
+  .findAll({ include: [Routine]} )
   .then(function (users) {
     res.send(users);
   });
 });
-
 
 app.post('/users', function (req, res) {
   var username = req.body.username;
@@ -59,6 +72,39 @@ app.post('/users', function (req, res) {
     .then(function (user) {
       res.send(user);
     });
+  });
+});
+
+app.post('/sessions', function (req, res) {
+  var loginUsername = req.body.username;
+  var loginPassword = req.body.password;
+
+  User
+  .findOne({
+    where: { username: loginUsername }
+  })
+  .then(function (user) {
+    if (user) {
+      var passwordDigest = user.password_digest;
+      bcrypt.compare(loginPassword, passwordDigest, function (err, result) {
+        if (result) {
+          req.session.currentUser = user.id;
+          res.send('correct credentials');
+        } else {
+          res.status(400);
+          res.send({
+            err: 400,
+            msg: 'wrong password'
+          });
+        }
+      });
+    } else {
+      res.status(400);
+      res.send({
+        err: 400,
+        msg: 'username does not exist'
+      });
+    }
   });
 });
 
