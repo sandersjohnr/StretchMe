@@ -12,21 +12,21 @@ var express       = require('express'),
 var app           = express();
 
 app.use(bodyParser());
-app.use(morgan('dev'));
-app.use(express.static(__dirname + "/public"));
 
-
+if (process.env.NODE_ENV !== 'test') {
+  app.use(morgan('dev'));
+}
 app.use(session({
   secret: 'twenty-three skidoo',
   resave: false,
   saveUninitialized: true
 }));
 
+app.use('/users', userRouter);
+app.use('/routines', routineRouter);
+app.use('/stretches', stretchRouter);
 
-
-
-
-
+app.use(express.static(__dirname + "/public"));
 
 app.listen( process.env.PORT || 3000, function () {
     console.log('Running on 3000!');
