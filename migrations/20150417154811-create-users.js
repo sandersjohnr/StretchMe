@@ -13,7 +13,7 @@ module.exports = {
         unique: true,
         type: DataTypes.STRING
       },
-      password: {
+      password_digest: {
         allowNull: false,
         type: DataTypes.STRING
       },

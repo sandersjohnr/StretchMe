@@ -19,7 +19,7 @@ module.exports = function(sequelize, DataTypes) {
     },
     instruction: {
       allowNull: false,
-      tyep: DataTypes.STRING,
+      type: DataTypes.STRING,
       validate: {
         notEmpty: { msg: 'Stretch instruction cannot be empty'}
       }
