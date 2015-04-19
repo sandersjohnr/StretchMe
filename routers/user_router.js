@@ -1,13 +1,3 @@
-/*
-var express          = require('express'),
-    models           = require('../models'),
-    Student          = models.students,
-    Course           = models.courses,
-    Campus           = models.campuses;
-
-var campusRouter = express.Router();
-*/
-
 var express       = require('express'),
     session       = require('express-session'),
     bcrypt        = require('bcrypt'),
