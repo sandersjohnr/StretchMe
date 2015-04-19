@@ -44,7 +44,7 @@ module.exports = {
         type: DataTypes.BOOLEAN
       },
       media_url: {
-        type: DataTypes.STRING,
+        type: DataTypes.STRING
       },
       created_at: {
         allowNull: false,

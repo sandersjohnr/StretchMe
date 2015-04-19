@@ -1,21 +1,27 @@
 var express       = require('express'),
+    bodyParser    = require('body-parser'),
     session       = require('express-session'),
     morgan        = require('morgan'),
-    bodyParser    = require('body-parser'),
     path          = require('path'),
     bcrypt        = require('bcrypt'),
     models        = require('./models'),
     userRouter    = require('./routers/user_router.js'),
     routineRouter = require('./routers/routine_router.js'),
-    stretchRouter = require('./routers/stretchRouter.js');
-    
-var app           = express();
+    stretchRouter = require('./routers/stretch_router.js');
 
-app.use(bodyParser());
+var User = models.users;
+    
+var app = express();
+// var routers       = require('./routers')(app);
+
+
+app.use( bodyParser.urlencoded({ extended: false }) );
+app.use( bodyParser.json() );
 
 if (process.env.NODE_ENV !== 'test') {
   app.use(morgan('dev'));
 }
+
 app.use(session({
   secret: 'twenty-three skidoo',
   resave: false,
@@ -25,6 +31,44 @@ app.use(session({
 app.use('/users', userRouter);
 app.use('/routines', routineRouter);
 app.use('/stretches', stretchRouter);
+
+// DEBUG SESSION ##########################
+app.get('/debug_session', function (req, res) {
+  res.send(req.session);
+})
+
+// USER AUTH ##############################
+app.get('/users', function (req, res) {
+  User
+  .findAll()
+  .then(function (users) {
+    res.send(users);
+  });
+});
+
+
+app.post('/users', function (req, res) {
+  var username = req.body.username;
+  var password = req.body.password;
+  bcrypt.hash(password, 10, function (err, hash) {
+    User
+    .create({
+      username: username,
+      password_digest: hash
+    })
+    .then(function (user) {
+      res.send(user);
+    });
+  });
+});
+
+
+
+
+
+
+
+
 
 app.use(express.static(__dirname + "/public"));
 

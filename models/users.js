@@ -10,7 +10,7 @@ module.exports = function(sequelize, DataTypes) {
         isAlphanumeric: { msg: 'Username can only contain letters and numbers'}
       }
     },
-    password: {
+    password_digest: {
       type: DataTypes.STRING,
       allowNull: false,
       validate: {
