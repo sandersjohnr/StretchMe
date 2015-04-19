@@ -8,8 +8,8 @@ var express       = require('express'),
     Stretches     = models.stretches;
 
 var userRouter = express.Router();
-var app = express();
 
+// var app = express();
 // app.use('bcrypt');
 // app.use(session({
 //   secret: 'twenty-three skidoo',

@@ -1,3 +1,9 @@
+App = {
+  Models: {},
+  Collections: {},
+  Views: {}
+};
+
 $(function() {
 
 
