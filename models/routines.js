@@ -5,12 +5,11 @@ module.exports = function(sequelize, DataTypes) {
       type: DataTypes.STRING,
       allowNull: false,
       validate: {
-        notEmpty: { msg: 'Routine name cannot be empty'},
-        isAlphanumeric: { msg: 'Routine name can only contain letters and numbers'}
+        notEmpty: { msg: 'Routine name cannot be empty'}
       }
     },
     description: { 
-      type: DataTypes.INTEGER
+      type: DataTypes.STRING
     },
     user_id: {
       allowNull: false,

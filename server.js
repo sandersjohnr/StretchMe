@@ -1,25 +1,22 @@
 var express       = require('express'),
+    app           = express(),
     bodyParser    = require('body-parser'),
     session       = require('express-session'),
     morgan        = require('morgan'),
     path          = require('path'),
     bcrypt        = require('bcrypt'),
     models        = require('./models'),
+    // router        = require('./routers')(app),
     userRouter    = require('./routers/user_router.js'),
     routineRouter = require('./routers/routine_router.js'),
     stretchRouter = require('./routers/stretch_router.js');
 
-var User = models.users;
+var User    = models.users;
 var Routine = models.routines;
 var Stretch = models.stretches;
     
-var app = express();
-// var routers       = require('./routers')(app);
-
-
 app.use( bodyParser.urlencoded({ extended: false }) );
 app.use( bodyParser.json() );
-
 if (process.env.NODE_ENV !== 'test') {
   app.use(morgan('dev'));
 }
@@ -44,7 +41,7 @@ app.get('/debug_session', function (req, res) {
 var restrictAccess = function(req, res, next) {
   var sessionID = parseInt( req.session.currentUser );
   var reqID = parseInt( req.params.id );
-  sessionID === reqID ? next() : res.status(401).send({err: 401, msg: 'YOU SHALL NOT PASS!'});
+  sessionID === reqID ? next() : res.status(401).send({err: 401, msg: 'Access restricted'});
 };
 
 var authenticate = function(req, res, next) {
@@ -108,19 +105,30 @@ app.post('/sessions', function (req, res) {
   });
 });
 
+app.delete('/sessions', function (req, res) {
+  delete req.session.currentUser;
+  res.send('Successfully logged out');
+});
+
+app.get('/current_user', function (req,res) {
+  User
+  .findOne(req.session.currentUser)
+  .then(function (user) {
+    res.send(user);
+  });
+});
 
 
 
 
 
-
-
-
+// Set up front end
 app.use(express.static(__dirname + "/public"));
 
+// Start server
 app.listen( process.env.PORT || 3000, function () {
     console.log('Running on 3000!');
 });
 
-// export app module
+// Export app module
 module.exports = app;
