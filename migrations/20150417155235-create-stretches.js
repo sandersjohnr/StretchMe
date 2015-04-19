@@ -29,7 +29,7 @@ module.exports = {
         allowNull: false,
         type: DataTypes.INTEGER
       },
-      reps: {
+      rep_num: {
         allowNull: false,
         type: DataTypes.INTEGER
       },
