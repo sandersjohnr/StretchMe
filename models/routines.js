@@ -9,8 +9,18 @@ module.exports = function(sequelize, DataTypes) {
         isAlphanumeric: { msg: 'Routine name can only contain letters and numbers'}
       }
     },
+<<<<<<< HEAD
     description: { 
       type: DataTypes.INTEGER
+=======
+    interval: { 
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      validate: {
+        isInt: { msg: 'Interval must be an integer'},
+        min: { args: [1], msg: 'Interval must be at least 1'},
+        max: { args: [60], msg: 'Interval must be 60 or less'}
+>>>>>>> master
       }
     },
     user_id: {
