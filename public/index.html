@@ -28,14 +28,19 @@
 <body>
   <h1>stretch.me</h1>
 
-  <nav></nav>
-
-  <section id="session"></section>
+  <nav id="navigation"></nav>
+  <section id="main">
+    <div id="left-container"></div>
+    <div id="right-container"></div>
+  </section>
 
   <!-- TEMPLATES -->
+
+  <!-- User -->
+  
   <template id="login-template">
     <h2>Login</h2>
-    <p>Enter your username and password to access your account.</p>
+    <p>Enter your username and password to access your routines.</p>
     <input type="text" id="login-username" placeholder="Username">
     <input type="password" id="login-password" placeholder="Password">
     <button id="button-login">Log In</button>
@@ -54,13 +59,45 @@
     <hr>
   </template>
 
-
   <template id="user-template">
-    <p>Hello, {{ first_name }} {{ last_name }}. Please select from the following options:</p>
+    <p>Hello, {{ username }}</p>
     <button id="button-edit">Edit Account</button>
     <button id="button-logout">Logout</button>
   </template>
 
+  <!-- Routines -->
+
+  <template id="routine-template">
+    {{#each routine}}
+      <p class="routine-name">{{ name }}</p>
+      <p class="routine-description">{{ description }}</p>
+      <button id="button-edit-routine">Add/Remove Stretches</button>
+    {{/each}}
+  </template>
+
+  <!-- Stretches -->
+
+  <template id="stretch-list-template">
+    {{#each stretch}}
+      <p class="stretch-name">{{ name }}</p>
+      <!-- insert check box / radio button -->
+    {{/each}}
+    <button id="button-remove-stretches"></button>
+  </template>  
+
+  <template id="stretch-all-template">
+    {{#each stretch}}
+      <p class="stretch-name">{{ name }}</p>
+      <!-- insert check box / radio button -->
+    {{/each}}
+    <button id="button-add-stretches"></button>
+  </template>
+
+  <template id="stretch-full-template">
+    <p class="stretch-name">{{ name }}</p>
+    <p class="stretch-directions">{{ directions_full }}</p>
+    <div class="video"></div>
+  </template>
 
   
 </body>
