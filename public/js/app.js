@@ -6,13 +6,12 @@ App = {
 
 $(function() {
 
-  // $.post('/sessions', {username: 'bobojones', password: 'poop'}).done(function(){
+  $.post('/sessions', {username: 'sanders', password: 'resipsa'}).done(function(){
 
     App.userView = new App.Views.User;
-    App.routines = new App.Collections.Routine;
+    // App.routines = new App.Collections.Routine;
 
-  // });
-  // debugger;
+  });
 });
 
 

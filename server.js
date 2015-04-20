@@ -119,9 +119,6 @@ app.get('/current_user', function (req,res) {
 });
 
 
-
-
-
 // Set up front end
 app.use(express.static(__dirname + "/public"));
 

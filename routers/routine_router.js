@@ -6,10 +6,12 @@ var express       = require('express'),
 
 var routineRouter = express.Router();
 
-// DEBUG ROUTINES ##########################################
+// GET ALL ROUTINES FOR SESSION USER #################################
 routineRouter.get('/', function (req, res) {
   Routine
-  .findAll(/*{ include: [Stretch] }*/)
+  .findAll({
+    where: { user_id: req.session.currentUser }
+  })
   .then(function (routines) {
     res.send(routines);
   });

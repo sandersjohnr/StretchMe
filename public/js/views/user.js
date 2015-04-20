@@ -14,7 +14,7 @@ App.Views.User = Backbone.View.extend({
     $.get('/current_user').done( function (user) {
       if (user) {
         this.$el.html( this.userTemplate(user) );
-        $('#main').html(new App.Views.RoutineColl);
+        $('#main').html(new App.Views.RoutineColl(user));
       } else {
         this.$el.html( this.loginTemplate() );
       }
@@ -63,6 +63,7 @@ App.Views.User = Backbone.View.extend({
   },
 
   logout: function() {
+    $('#main').empty();
     $.ajax({
       url: '/sessions',
       method: 'DELETE'

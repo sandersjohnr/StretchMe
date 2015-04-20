@@ -73,29 +73,28 @@
   <!-- Routines -->
 
   <template id="routine-list-template">
-    {{#each routine}}
+    <div class="routine" data-id="{{id}}">
       <p class="routine-name">{{ name }}</p>
       <p class="routine-description">{{ description }}</p>
-      <button id="button-edit-routine">Add/Remove Stretches</button>
-    {{/each}}
+    </div>
   </template> 
 
   <!-- Stretches -->
 
   <template id="stretch-list-template">
-    {{#each stretch}}
+    <!-- {{#each stretches}} -->
       <p class="stretch-name">{{ name }}</p>
       <!-- insert check box / radio button -->
-    {{/each}}
-    <button id="button-remove-stretches"></button>
+    <!-- {{/each}} -->
+      <button id="button-remove"></button>
   </template>  
 
   <template id="stretch-all-template">
-    {{#each stretch}}
+    {{#each stretches}}
       <p class="stretch-name">{{ name }}</p>
       <!-- insert check box / radio button -->
     {{/each}}
-    <button id="button-add-stretches"></button>
+    <button id="button-add"></button>
   </template>
 
   <template id="stretch-full-template">
