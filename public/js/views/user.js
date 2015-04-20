@@ -31,12 +31,22 @@ App.Views.User = Backbone.View.extend({
     var password = $('#signup-password').val();
     var firstName = $('#signup-firstname').val();
     var lastName = $('#signup-lastname').val();
-    $.post('/users', {
-      username: username,
-      password: password,
-      first_name: firstName,
-      last_name: lastName
-    }).done( this.renderSession.bind(this) );
+    if ( username === '' || password === '' ) {
+      $('.error').remove();
+      this.$el.append($('<li class="error">You must enter both a username and a password</li>'));
+    } else {
+      $.post('/users', {
+        username: username,
+        password: password,
+        first_name: firstName,
+        last_name: lastName
+      }).done( this.renderSession.bind(this) )
+        .fail( function (response) {
+        $('.error').remove();
+        var err = response.responseJSON;
+        this.$el.append($('<li class="error">' + err.msg + '</li>'));
+      }.bind(this));;      
+    }
   },
 
   login: function() {
@@ -74,6 +84,7 @@ App.Views.User = Backbone.View.extend({
     'click #button-logout'  : 'logout',
     'click #button-login'   : 'login',
     'keypress #login-username, #login-password' : 'keypressLogin'
+
   }
 
 });
