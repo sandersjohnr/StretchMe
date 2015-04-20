@@ -51,7 +51,7 @@ var authenticate = function(req, res, next) {
 // USER ROUTES ####################################
 app.get('/users', function (req, res) {
   User
-  .findAll({ include: [Routine]} )
+  .findAll({ include: [Routine] })
   .then(function (users) {
     res.send(users);
   });

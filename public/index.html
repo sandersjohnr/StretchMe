@@ -3,7 +3,6 @@
 <head>
   <meta charset="UTF-8">
   <title>stretch.me</title>
-
   <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
   <script src='http://underscorejs.org/underscore-min.js'></script>
   <script src="http://backbonejs.org/backbone-min.js"></script>
@@ -11,17 +10,20 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/3.0.0/handlebars.min.js"></script>
 
   <script src="js/app.js"></script>
+
   <script src="js/models/user.js"></script>
   <script src="js/models/routine.js"></script>
   <script src="js/models/stretch.js"></script>
+
   <script src="js/collections/routine_coll.js"></script>
   <script src="js/collections/stretch_coll.js"></script>
   
-  <script src="js/views/user_view.js"></script>
-  <script src="js/views/routine_view.js"></script>
-  <script src="js/views/stretch_view.js"></script>
-  <script src="js/views/routine_coll_view.js"></script>
-  <script src="js/views/stretch_coll_view.js"></script>
+  <script src="js/views/user.js"></script>
+  <script src="js/views/routine.js"></script>
+  <script src="js/views/stretch_preview.js"></script>
+  <script src="js/views/stretch_full.js"></script>
+  <script src="js/views/routine_coll.js"></script>
+  <script src="js/views/stretch_coll.js"></script>
 
   <link rel="stylesheet" href="css/style.css">
 </head>
@@ -29,15 +31,16 @@
   <h1>stretch.me</h1>
 
   <nav id="navigation"></nav>
+  <section id="session"></section>
   <section id="main">
-    <div id="left-container"></div>
-    <div id="right-container"></div>
+    <!-- <div id="left-container"></div>
+    <div id="right-container"></div> -->
   </section>
 
   <!-- TEMPLATES -->
 
   <!-- User -->
-  
+
   <template id="login-template">
     <h2>Login</h2>
     <p>Enter your username and password to access your routines.</p>
@@ -60,20 +63,20 @@
   </template>
 
   <template id="user-template">
-    <p>Hello, {{ username }}</p>
-    <button id="button-edit">Edit Account</button>
+    <p>Hello, {{ username }}. Please select a routine:</p>
+    <!-- <button id="button-edit">Edit Account</button> -->
     <button id="button-logout">Logout</button>
   </template>
 
   <!-- Routines -->
 
-  <template id="routine-template">
+  <template id="routine-list-template">
     {{#each routine}}
       <p class="routine-name">{{ name }}</p>
       <p class="routine-description">{{ description }}</p>
       <button id="button-edit-routine">Add/Remove Stretches</button>
     {{/each}}
-  </template>
+  </template> 
 
   <!-- Stretches -->
 
