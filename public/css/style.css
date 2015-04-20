@@ -1,0 +1,13 @@
+#left-container {
+  float: left;
+  width: 200px;
+}
+
+#right-container {
+  float: right;
+  width: 200px;
+}
+
+.routine {
+  border: 1px solid red;
+}

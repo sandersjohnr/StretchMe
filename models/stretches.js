@@ -6,8 +6,7 @@ module.exports = function(sequelize, DataTypes) {
       allowNull: false,
       unique: true,
       validate: {
-        notEmpty: { msg: 'Stretch name cannot be empty'},
-        isAlphanumeric: { msg: 'Stretch name can only include letters and numbers'}
+        notEmpty: { msg: 'Stretch name cannot be empty'}
       }
     },
     intro: {

@@ -2,28 +2,22 @@ var express       = require('express'),
     models        = require('../models'),
     User          = models.users,
     Routine       = models.routines,
-    Stretch       = models.stretch;
+    Stretch       = models.stretches;
 
 var routineRouter = express.Router();
 
-// DEBUG ROUTINES ##########################################
+// GET ALL ROUTINES FOR SESSION USER #################################
 routineRouter.get('/', function (req, res) {
   Routine
-  .findAll(/*{ include: [Stretch] }*/)
+  .findAll({
+    where: { user_id: req.session.currentUser }
+  })
   .then(function (routines) {
     res.send(routines);
   });
 });
 
-// ROUTINE ROUTES ##########################################
-routineRouter.get('/:id', function (req, res) {
-  Routine
-  .findOne(req.params.id)
-  .then(function (routine) {
-    res.send(routine);
-  });
-});
-
+// CREATE NEW ROUTINE #########################################
 routineRouter.post('/', /*authenticate, restrictAccess, */function (req, res) {
   Routine
   .create({
@@ -36,6 +30,16 @@ routineRouter.post('/', /*authenticate, restrictAccess, */function (req, res) {
   });
 });
 
+// GET ROUTINE BY ID ##########################################
+routineRouter.get('/:id', function (req, res) {
+  Routine
+  .findOne(req.params.id)
+  .then(function (routine) {
+    res.send(routine);
+  });
+});
+
+// EDIT ROUTINE #########################################
 routineRouter.put('/:id', function (req, res) {
   Routine
   .findOne(req.params.id)
@@ -44,6 +48,42 @@ routineRouter.put('/:id', function (req, res) {
     .update(req.body)
     .then(function (updatedRoutine) {
       res.send(updatedRoutine);
+    });
+  });
+});
+
+// GET STRETCHES BY ROUTINE #########################################
+routineRouter.get('/:id/stretches', function (req, res) {
+  Stretch
+  .findAll({
+    where: { routine_id: req.params.id }
+  })
+  .then(function (stretches) {
+    res.send(stretches);
+  });
+});
+
+// CREATE NEW STRETCH #########################################
+routineRouter.post('/:id/add_stretch', function (req, res) {
+  Routine
+  .findOne(req.params.id)
+  .then(function (routine) {
+    Stretch
+    .create({
+      name: req.body.name,
+      band: req.body.band,
+      roller: req.body.roller,
+      both_sides: req.body.both_sides, 
+      intro: req.body.intro, 
+      instruction: req.body.instruction,
+      setup_time: req.body.setup_time,
+      rep_time: req.body.rep_time, 
+      rep_num: req.body.rep_num,
+      media_url: req.body.media_url
+    })
+    .then(function (stretch) {
+      routine.addStretch(stretch);
+      res.send(stretch);
     });
   });
 });

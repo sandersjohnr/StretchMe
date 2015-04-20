@@ -20,16 +20,17 @@ app.use( bodyParser.json() );
 if (process.env.NODE_ENV !== 'test') {
   app.use(morgan('dev'));
 }
-
 app.use(session({
   secret: 'twenty-three skidoo',
   resave: false,
   saveUninitialized: true
 }));
-
+// Set up routes
 app.use('/users', userRouter);
 app.use('/routines', routineRouter);
 app.use('/stretches', stretchRouter);
+// Set up front end
+app.use(express.static(__dirname + "/public"));
 
 // DEBUG SESSION ##########################
 app.get('/debug_session', function (req, res) {
@@ -105,10 +106,6 @@ app.post('/sessions', function (req, res) {
   });
 });
 
-app.delete('/sessions', function (req, res) {
-  delete req.session.currentUser;
-  res.send('Successfully logged out');
-});
 
 app.get('/current_user', function (req,res) {
   User
@@ -118,12 +115,11 @@ app.get('/current_user', function (req,res) {
   });
 });
 
+app.delete('/sessions', function (req, res) {
+  delete req.session.currentUser;
+  res.send('Successfully logged out');
+});
 
-
-
-
-// Set up front end
-app.use(express.static(__dirname + "/public"));
 
 // Start server
 app.listen( process.env.PORT || 3000, function () {

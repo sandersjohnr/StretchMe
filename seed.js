@@ -21,13 +21,13 @@ var stretches = [
     name: 'Banded hamstring stretch',
     band: true,
     roller: false,
+    both_sides: true, 
     intro: '', 
     instruction: 'Lie down on your mat and place your right foot in the loop at the end of your band. To begin, lift your leg until you feel a good stretch in your hamstring',
     setup_time: 20,
     rep_time: 60, 
     rep_num: 1,
-    both_sides: true, 
-    media_url: ''
+    media_url: 'https://www.youtube.com/watch?v=hfvd04VyXbs'
   }
 ];
 
