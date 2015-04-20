@@ -14,7 +14,7 @@ App.Views.User = Backbone.View.extend({
     $.get('/current_user').done( function (user) {
       if (user) {
         this.$el.html( this.userTemplate(user) );
-        $('#main').html(new App.Views.RoutineColl(user));
+        $('#left-container').html(new App.Views.RoutineList(user));
       } else {
         this.$el.html( this.loginTemplate() );
       }
@@ -27,10 +27,10 @@ App.Views.User = Backbone.View.extend({
   },
 
   signup: function() {
-    var username = $('#signup-username').val();
-    var password = $('#signup-password').val();
-    var firstName = $('#signup-firstname').val();
-    var lastName = $('#signup-lastname').val();
+    var username = $('#signup-username').val(),
+        password = $('#signup-password').val(),
+        firstName = $('#signup-firstname').val(),
+        lastName = $('#signup-lastname').val();
     if ( username === '' || password === '' ) {
       $('.error').remove();
       this.$el.append($('<li class="error">You must enter both a username and a password</li>'));
@@ -53,7 +53,6 @@ App.Views.User = Backbone.View.extend({
       password: password
     }).done( function (user) {
         this.renderSession();
-        $('#main').html(new App.Views.RoutineColl);
       }.bind(this) )
       .fail( this.errorHandling.bind(this) );
   },
