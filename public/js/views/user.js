@@ -14,7 +14,7 @@ App.Views.User = Backbone.View.extend({
     $.get('/current_user').done( function (user) {
       if (user) {
         this.$el.html( this.userTemplate(user) );
-        $('#main').html()
+        $('#main').html(new App.Views.RoutineColl);
       } else {
         this.$el.html( this.loginTemplate() );
       }
@@ -41,11 +41,7 @@ App.Views.User = Backbone.View.extend({
         first_name: firstName,
         last_name: lastName
       }).done( this.renderSession.bind(this) )
-        .fail( function (response) {
-        $('.error').remove();
-        var err = response.responseJSON;
-        this.$el.append($('<li class="error">' + err.msg + '</li>'));
-      }.bind(this));;      
+        .fail( this.errorHandling.bind(this) );
     }
   },
 
@@ -59,11 +55,11 @@ App.Views.User = Backbone.View.extend({
         this.renderSession();
         $('#main').html(new App.Views.RoutineColl);
       }.bind(this) )
-      .fail( function (response) {
-        $('.error').remove();
-        var err = response.responseJSON;
-        this.$el.append($('<li class="error">' + err.msg + '</li>'));
-      }.bind(this));
+      .fail( this.errorHandling.bind(this) );
+  },
+
+  keypressLogin: function(e) {
+    if (e.which == 13) this.login();
   },
 
   logout: function() {
@@ -73,8 +69,10 @@ App.Views.User = Backbone.View.extend({
     }).done( this.renderSession.bind(this) );
   },
 
-  keypressLogin: function(e) {
-    if (e.which == 13) this.login();
+  errorHandling: function (response) {
+    $('.error').remove();
+    var err = response.responseJSON;
+    this.$el.append($('<li class="error">' + err.msg + '</li>'))
   },
 
   events: {
@@ -84,7 +82,6 @@ App.Views.User = Backbone.View.extend({
     'click #button-logout'  : 'logout',
     'click #button-login'   : 'login',
     'keypress #login-username, #login-password' : 'keypressLogin'
-
   }
 
 });
