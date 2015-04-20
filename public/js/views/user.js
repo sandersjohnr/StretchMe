@@ -1,6 +1,6 @@
 App.Views.User = Backbone.View.extend({
   
-  el: '#main',
+  el: '#session',
 
   initialize: function() {
     cl('created: user view');
@@ -8,13 +8,13 @@ App.Views.User = Backbone.View.extend({
     this.signupTemplate = Handlebars.compile($('#signup-template').html());
     this.loginTemplate = Handlebars.compile($('#login-template').html());
     this.renderSession();
-    // this.renderLogin();
   },
 
   renderSession: function() {
     $.get('/current_user').done( function (user) {
       if (user) {
         this.$el.html( this.userTemplate(user) );
+        $('#main').html()
       } else {
         this.$el.html( this.loginTemplate() );
       }
@@ -45,7 +45,15 @@ App.Views.User = Backbone.View.extend({
     $.post('/sessions', {
       username: username,
       password: password
-    }).done( this.renderSession.bind(this) );
+    }).done( function (user) {
+        this.renderSession();
+        $('#main').html(new App.Views.RoutineColl);
+      }.bind(this) )
+      .fail( function (response) {
+        $('.error').remove();
+        var err = response.responseJSON;
+        this.$el.append($('<li class="error">' + err.msg + '</li>'));
+      }.bind(this));
   },
 
   logout: function() {
@@ -55,13 +63,17 @@ App.Views.User = Backbone.View.extend({
     }).done( this.renderSession.bind(this) );
   },
 
+  keypressLogin: function(e) {
+    if (e.which == 13) this.login();
+  },
+
   events: {
     'click #login-link'     : 'renderSession',
     'click #signup-link'    : 'renderSignup',
     'click #button-signup'  : 'signup',
     'click #button-logout'  : 'logout',
-    'click #button-login'   : 'login'
+    'click #button-login'   : 'login',
+    'keypress #login-username, #login-password' : 'keypressLogin'
   }
-
 
 });
