@@ -24,9 +24,13 @@ App.Views.User = Backbone.View.extend({
 
   renderSession: function(user) {
     this.$el.html( this.userTemplate(user) );
+    this.showRoutines(user);
+  },  
+
+  showRoutines: function(user) {
     $('#right-container').html('');
     new App.Views.RoutineList(user);
-  },  
+  },
 
   renderSignup: function () {
     this.$el.empty();
@@ -92,7 +96,8 @@ App.Views.User = Backbone.View.extend({
     'click #button-logout'            : 'logout',
     'click #button-login'             : 'login',
 
-    'click #login-link, #button-show-all-routines' : 'renderSession',
+    'click #login-link' : 'renderSession',
+    'click #button-show-all-routines' : 'showRoutines',
     'keypress #login-username, #login-password'    : 'keypressLogin'
   }
 
