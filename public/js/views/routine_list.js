@@ -6,16 +6,13 @@ App.Views.RoutineList = Backbone.View.extend({
     cl('created: routine collection view');
     this.routineTemplate = Handlebars.compile($('#routine-list-template').html());
     this.collection = new App.Collections.Routine;
-    this.collection.fetch({reset: true}/*{ success: function() {
-      this.renderRoutineList();
-    }.bind(this)}*/);
-
+    this.collection.fetch({reset: true});
     this.listenTo(this.collection, 'reset', this.renderRoutineList);
   },
 
   renderRoutineList: function() {
     cl('rendering routine list');
-    // this.$el.html( this.routineTemplate( this.collection ) );
+    // this.$el.append($('<button id="button-new-routine">').text('New'));
     this.collection.each( this.renderRoutine, this );
   },
 
@@ -25,11 +22,16 @@ App.Views.RoutineList = Backbone.View.extend({
 
   setCurrentRoutine: function(clicked) {
     var routineID = $(clicked.target).closest('div').data('id');
-    this.$el.html(new App.Views.StretchList(routineID));
+    var currentRoutine = this.collection.findWhere({ id: routineID });
+    this.$el.empty();
+    this.renderRoutine(currentRoutine);
+    $('#right-container').empty();
+    new App.Views.StretchList(currentRoutine);
   },
 
   events: {
-    'click div.routine' : 'setCurrentRoutine'
+    'click .routine'             : 'setCurrentRoutine',
+    'click .button-edit-routine' : 'editRoutine'
   }
 
 });

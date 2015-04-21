@@ -51,9 +51,12 @@ App.Views.User = Backbone.View.extend({
     $.post('/sessions', {
       username: username,
       password: password
-    }).done( function (user) {
-        this.renderSession();
-      }.bind(this) )
+    }).done( function () {
+        $.get('/current_user').done(function (user) {
+          this.$el.html( this.userTemplate(user) );
+          $('#left-container').html(new App.Views.RoutineList(user));
+        }.bind(this));
+      }.bind(this))
       .fail( this.errorHandling.bind(this) );
   },
 
@@ -62,7 +65,7 @@ App.Views.User = Backbone.View.extend({
   },
 
   logout: function() {
-    $('#main').empty();
+    $('#left-container').empty();
     $.ajax({
       url: '/sessions',
       method: 'DELETE'

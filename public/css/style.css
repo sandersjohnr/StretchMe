@@ -1,13 +1,19 @@
 #left-container {
   float: left;
   width: 200px;
+  border: 1px solid green;
 }
 
 #right-container {
   float: right;
   width: 200px;
+  border: 1px solid blue;
 }
 
 .routine {
   border: 1px solid red;
+}
+
+.stretch {
+  border: 1px solid beige;
 }
