@@ -37,6 +37,8 @@
     <div id="right-container"></div>
   </section>
 
+  <section id="stretch-modal"></section>
+
   <!-- TEMPLATES -->
 
   <!-- User -->
@@ -67,6 +69,7 @@
     <!-- <button id="button-edit">Edit Account</button> -->
     <p>Hello, {{ username }}. Please select a routine:</p>
     <button id="button-new-routine">New Routine</button>
+    <button id="button-show-all-routines">Show All</button>
     <button id="button-logout">Logout</button>
     <hr>
   </template>
@@ -78,7 +81,8 @@
       <p class="routine-name">{{ name }}</p>
       <p class="routine-description">{{ description }}</p>
     </div>
-    <button class="button-edit-routine">Edit</button>
+    <button class="button-edit-routine">Edit Info</button>
+    <button class="button-add-stretches">Add Streches</button>
   </template> 
 
   <template id="routine-new-template">
@@ -90,7 +94,7 @@
   <!-- Stretches -->
 
   <template id="stretch-preview-template">
-    <div class="stretch">
+    <div class="stretch" data-id="{{id}}">
       <p class="stretch-name">{{ name }}</p>
     </div>
       <button id="button-remove">x</button>
@@ -105,9 +109,25 @@
   </template>
 
   <template id="stretch-full-template">
-    <p class="stretch-name">{{ name }}</p>
-    <p class="stretch-directions">{{ directions_full }}</p>
-    <div class="video"></div>
+    <div>
+      <div class="close-link">x</div>
+      <p class="name">{{ name }}</p>
+      <div class="equipment">
+        {{#if band}}
+          <p>Requires a strap.</p>
+        {{/if}}
+        {{#if roller}}
+          <p>Requires a foam roller.</p>
+        {{/if}}
+      </div> 
+      <span>Number of Reps: {{rep_num}} </span>
+      {{#if both_sides}}
+        <span>on each side. </span>
+      {{/if}}
+      <p>Seconds per Rep: {{rep_time}}</p>
+      <p class="stretch-directions">{{ instruction }}</p>
+      <div class="video"></div>
+    </div>
   </template>
 
   

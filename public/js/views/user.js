@@ -8,6 +8,8 @@ App.Views.User = Backbone.View.extend({
     this.signupTemplate = Handlebars.compile($('#signup-template').html());
     this.loginTemplate = Handlebars.compile($('#login-template').html());
     this.newRoutineTemplate = Handlebars.compile($('#routine-new-template').html());
+    $('#stretch-modal').hide();
+    $('#stretch-modal').empty();
     this.renderSession();
   },
 
@@ -66,7 +68,8 @@ App.Views.User = Backbone.View.extend({
   },
 
   logout: function() {
-    $('#left-container').empty();
+    $('#main').children().empty();
+
     $.ajax({
       url: '/sessions',
       method: 'DELETE'
@@ -102,14 +105,14 @@ App.Views.User = Backbone.View.extend({
   },
 
   events: {
-    'click #login-link'     : 'renderSession',
-    'click #signup-link'    : 'renderSignup',
-    'click #button-signup'  : 'signup',
-    'click #button-logout'  : 'logout',
-    'click #button-login'   : 'login',
-    'click #button-new-routine' : 'newRoutine',
-    'click #button-create-routine' : 'createRoutine',
-    'keypress #login-username, #login-password' : 'keypressLogin'
+    'click #signup-link'              : 'renderSignup',
+    'click #button-signup'            : 'signup',
+    'click #button-logout'            : 'logout',
+    'click #button-login'             : 'login',
+    'click #button-new-routine'       : 'newRoutine',
+    'click #button-create-routine'    : 'createRoutine',
+    'click #login-link, #button-show-all-routines' : 'renderSession',
+    'keypress #login-username, #login-password'    : 'keypressLogin'
   }
 
 });
