@@ -64,10 +64,10 @@
   </template>
 
   <template id="user-template">
-    <button id="button-logout">Logout</button>
     <!-- <button id="button-edit">Edit Account</button> -->
     <p>Hello, {{ username }}. Please select a routine:</p>
     <button id="button-new-routine">New Routine</button>
+    <button id="button-logout">Logout</button>
     <hr>
   </template>
 
@@ -80,6 +80,12 @@
     </div>
     <button class="button-edit-routine">Edit</button>
   </template> 
+
+  <template id="routine-new-template">
+    <input type="text" id="routine-name" placeholder="Name your routine">
+    <input type="text" id="routine-description" placeholder="Enter a description (optional)">
+    <button id="button-create-routine">Create</button>
+  </template>
 
   <!-- Stretches -->
 
