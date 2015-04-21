@@ -7,16 +7,21 @@ App.Views.RoutineList = Backbone.View.extend({
     this.$el.empty();
     this.routineTemplate = Handlebars.compile($('#routine-list-template').html());
     this.newRoutineTemplate = Handlebars.compile($('#routine-new-template').html());
-
     this.collection = new App.Collections.Routine;
     this.collection.fetch({reset: true});
     this.listenTo(this.collection, 'reset', this.renderRoutineList);
-    this.listenTo(this.collection, 'add', this.renderRoutineList);
+    this.renderMenu();
+    this.renderRoutineList();
+  },
+
+  renderMenu: function() {
+    this.$el.prepend($('<button id="button-show-all-routines">').text('Show All'));
+    this.$el.prepend($('<button id="button-new-routine">').text('New'));
   },
 
   renderRoutineList: function() {
     cl('rendering routine list');
-    this.$el.append($('<button id="button-new-routine">').text('New'));
+
     this.collection.each( this.renderRoutine, this );
   },
 
@@ -28,6 +33,7 @@ App.Views.RoutineList = Backbone.View.extend({
     var routineID = $(clicked.target).closest('div').data('id');
     var currentRoutine = this.collection.findWhere({ id: routineID });
     this.$el.empty();
+    this.renderMenu();
     this.renderRoutine(currentRoutine);
     $('#right-container').empty();
     new App.Views.StretchList(currentRoutine);
@@ -61,7 +67,10 @@ App.Views.RoutineList = Backbone.View.extend({
   events: {
     'click #button-new-routine'       : 'newRoutine',
     'click #button-create-routine'    : 'createRoutine',
+        'click #button-show-all-routines' : 'renderRoutineList',
+
     'click .routine'             : 'setCurrentRoutine',
+
     'click .button-edit-routine' : 'editRoutine'
   }
 

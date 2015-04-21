@@ -6,12 +6,12 @@ App = {
 
 $(function() {
 
-  $.post('/sessions', {username: 'sanders', password: 'resipsa'}).done(function(){
+  // $.post('/sessions', {username: 'sanders', password: 'resipsa'}).done(function(){
 
-    App.userView = new App.Views.User;
+  App.userView = new App.Views.User;
     // App.routines = new App.Collections.Routine;
 
-  });
+  // });
 
   var utter = function(text) {
     var msg = new SpeechSynthesisUtterance(text);
