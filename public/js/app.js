@@ -13,8 +13,13 @@ $(function() {
 
   });
 
-  var msg = new SpeechSynthesisUtterance('Yippy-kai-yay motherfucker');
-  speechSynthesis.speak(msg);
+  var utter = function(text) {
+    var msg = new SpeechSynthesisUtterance(text);
+    speechSynthesis.speak(msg);
+  };
+
+  utter('Welcome to stretch me bro')
+  
 
 });
 

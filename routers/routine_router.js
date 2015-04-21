@@ -1,6 +1,6 @@
 var express       = require('express'),
     models        = require('../models'),
-    session       = require('express-session'),
+    // session       = require('express-session'),
     User          = models.users,
     Routine       = models.routines,
     Stretch       = models.stretches;
@@ -9,7 +9,6 @@ var routineRouter = express.Router();
 
 // GET ALL ROUTINES FOR SESSION USER #################################
 routineRouter.get('/', function (req, res) {
-  console.log(req);
   Routine
   .findAll({
     where: { user_id: req.session.currentUser },

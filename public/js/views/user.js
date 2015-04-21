@@ -7,21 +7,29 @@ App.Views.User = Backbone.View.extend({
     this.userTemplate = Handlebars.compile($('#user-template').html());
     this.signupTemplate = Handlebars.compile($('#signup-template').html());
     this.loginTemplate = Handlebars.compile($('#login-template').html());
-    this.newRoutineTemplate = Handlebars.compile($('#routine-new-template').html());
     $('#stretch-modal').hide();
     $('#stretch-modal').empty();
-    this.renderSession();
+    this.checkSession();
   },
 
-  renderSession: function() {
+  checkSession: function() {
     $.get('/current_user').done( function (user) {
       if (user) {
-        this.$el.html( this.userTemplate(user) );
-        $('#left-container').html(new App.Views.RoutineList(user));
+        this.renderSession(user);
       } else {
         this.$el.html( this.loginTemplate() );
       }
     }.bind(this));
+  },
+
+  renderSession: function(user) {
+    this.$el.html( this.userTemplate(user) );
+    this.showRoutines(user);
+  },  
+
+  showRoutines: function(user) {
+    $('#right-container').html('');
+    new App.Views.RoutineList(user);
   },
 
   renderSignup: function () {
@@ -82,36 +90,14 @@ App.Views.User = Backbone.View.extend({
     this.$el.append($('<li class="error">' + err.msg + '</li>'))
   },
 
-  newRoutine: function() {
-    $('#left-container').empty();
-    $('#right-container').empty();
-    this.$el.empty();
-    this.$el.html( this.newRoutineTemplate() );
-  },
-
-  createRoutine: function() {
-    var routineName = $('#routine-name').val();
-    var routineDesc = $('#routine-description').val();
-    if ( routineName === '' ) {
-      $('.error').remove();
-      this.$el.append($('<li class="error">You must enter a name for your routine</li>'));
-    } else {
-      $.post('/routines', {
-        name: routineName,
-        description: routineDesc
-      }).done( this.renderSession.bind(this) )
-        .fail( this.errorHandling.bind(this) );
-    }
-  },
-
   events: {
     'click #signup-link'              : 'renderSignup',
     'click #button-signup'            : 'signup',
     'click #button-logout'            : 'logout',
     'click #button-login'             : 'login',
-    'click #button-new-routine'       : 'newRoutine',
-    'click #button-create-routine'    : 'createRoutine',
-    'click #login-link, #button-show-all-routines' : 'renderSession',
+
+    'click #login-link' : 'renderSession',
+    'click #button-show-all-routines' : 'showRoutines',
     'keypress #login-username, #login-password'    : 'keypressLogin'
   }
 
