@@ -4,15 +4,19 @@ App.Views.RoutineList = Backbone.View.extend({
 
   initialize: function(user) {
     cl('created: routine collection view');
+    this.$el.empty();
     this.routineTemplate = Handlebars.compile($('#routine-list-template').html());
+    this.newRoutineTemplate = Handlebars.compile($('#routine-new-template').html());
+
     this.collection = new App.Collections.Routine;
     this.collection.fetch({reset: true});
     this.listenTo(this.collection, 'reset', this.renderRoutineList);
+    this.listenTo(this.collection, 'add', this.renderRoutineList);
   },
 
   renderRoutineList: function() {
     cl('rendering routine list');
-    // this.$el.append($('<button id="button-new-routine">').text('New'));
+    this.$el.append($('<button id="button-new-routine">').text('New'));
     this.collection.each( this.renderRoutine, this );
   },
 
@@ -29,11 +33,34 @@ App.Views.RoutineList = Backbone.View.extend({
     new App.Views.StretchList(currentRoutine);
   },
 
+  newRoutine: function() {
+    this.$el.empty();
+    this.$el.html( this.newRoutineTemplate() );
+  },
+
+  createRoutine: function() {
+    var routineName = $('#routine-name').val();
+    var routineDesc = $('#routine-description').val();
+    if ( routineName === '' ) {
+      $('.error').remove();
+      this.$el.append($('<li class="error">You must enter a name for your routine</li>'));
+    } else {
+      this.$el.empty();
+      this.collection.add({
+        name: routineName,
+        description: routineDesc
+      });
+
+    }
+  },
+
   editRoutine: function() {
     // not MVP at the moment
   },
 
   events: {
+    'click #button-new-routine'       : 'newRoutine',
+    'click #button-create-routine'    : 'createRoutine',
     'click .routine'             : 'setCurrentRoutine',
     'click .button-edit-routine' : 'editRoutine'
   }
