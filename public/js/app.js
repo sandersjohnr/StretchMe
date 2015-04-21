@@ -12,6 +12,10 @@ $(function() {
     // App.routines = new App.Collections.Routine;
 
   });
+
+  var msg = new SpeechSynthesisUtterance('Yippy-kai-yay motherfucker');
+  speechSynthesis.speak(msg);
+
 });
 
 
