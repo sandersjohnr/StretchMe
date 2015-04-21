@@ -17,11 +17,12 @@ App.Views.RoutineList = Backbone.View.extend({
   renderMenu: function() {
     this.$el.prepend($('<button id="button-show-all-routines">').text('Show All'));
     this.$el.prepend($('<button id="button-new-routine">').text('New'));
+    this.$el.append($('<hr>'));
   },
 
   renderRoutineList: function() {
     cl('rendering routine list');
-
+    $('#right-container').empty();
     this.collection.each( this.renderRoutine, this );
   },
 
@@ -56,7 +57,6 @@ App.Views.RoutineList = Backbone.View.extend({
         name: routineName,
         description: routineDesc
       });
-
     }
   },
 
@@ -67,11 +67,9 @@ App.Views.RoutineList = Backbone.View.extend({
   events: {
     'click #button-new-routine'       : 'newRoutine',
     'click #button-create-routine'    : 'createRoutine',
-        'click #button-show-all-routines' : 'renderRoutineList',
-
-    'click .routine'             : 'setCurrentRoutine',
-
-    'click .button-edit-routine' : 'editRoutine'
+    'click #button-show-all-routines' : 'renderRoutineList',
+    'click .routine-info'             : 'setCurrentRoutine',
+    'click .button-edit-routine'      : 'editRoutine'
   }
 
 });

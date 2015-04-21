@@ -95,8 +95,7 @@ App.Views.User = Backbone.View.extend({
     'click #button-signup'            : 'signup',
     'click #button-logout'            : 'logout',
     'click #button-login'             : 'login',
-
-    'click #login-link' : 'renderSession',
+    'click #login-link'               : 'renderSession',
     'keypress #login-username, #login-password'    : 'keypressLogin'
   }
 

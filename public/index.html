@@ -27,7 +27,7 @@
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-  
+
   <h1>stretch.me</h1>
   <hr>
 
@@ -77,12 +77,14 @@
     
 
   <template id="routine-list-template">
-    <div class="routine" data-id="{{id}}">
-      <p class="routine-name">{{ name }}</p>
-      <p class="routine-description">{{ description }}</p>
+    <div class="routine">
+        <div class="routine-info" data-id="{{id}}">
+        <p class="routine-name">{{ name }}</p>
+        <p class="routine-description">{{ description }}</p>
+      </div>
+      <button class="button-edit-routine">Edit Info</button>
+      <button class="button-add-stretches">Add Streches</button>
     </div>
-    <button class="button-edit-routine">Edit Info</button>
-    <button class="button-add-stretches">Add Streches</button>
   </template> 
 
   <template id="routine-new-template">
