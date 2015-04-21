@@ -28,10 +28,5 @@ var userRouter = express.Router();
 
 // userRouter.post()
 
-
-
-
-
-
 // export module
 module.exports = userRouter;
