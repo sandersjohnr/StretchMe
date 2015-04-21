@@ -12,13 +12,22 @@ App.Views.StretchList = Backbone.View.extend({
   },
 
   renderStretchList: function() {
-    this.collection.each( this.renderStretch, this );
+    this.collection.each( this.renderStretchPreview, this );
   },
 
-  renderStretch: function(stretch) {
+  renderStretchPreview: function(stretch) {
     this.$el.append(new App.Views.StretchPreview({ model: stretch }).$el);
   },
 
-  events: {}
+  renderStretchFull: function(clicked) {
+    var stretchID = $(clicked.target).closest('div').data('id');
+    var currentStretch = this.collection.findWhere({ id: stretchID });
+    new App.Views.StretchFull({ model: currentStretch });
+  },
+
+  events: {
+    'click .stretch' : 'renderStretchFull'
+
+  }
 
 });

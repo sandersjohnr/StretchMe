@@ -29,6 +29,10 @@ App.Views.RoutineList = Backbone.View.extend({
     new App.Views.StretchList(currentRoutine);
   },
 
+  editRoutine: function() {
+    // not MVP at the moment
+  },
+
   events: {
     'click .routine'             : 'setCurrentRoutine',
     'click .button-edit-routine' : 'editRoutine'

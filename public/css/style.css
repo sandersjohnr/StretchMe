@@ -10,10 +10,41 @@
   border: 1px solid blue;
 }
 
+#stretch-modal {
+  position: absolute;
+  margin: 20px 20px;
+  padding: 20px;
+  top: 100px;
+  background-color: darkgrey;
+  color: white;
+  z-index: 2;
+  border-radius: 10px;
+  border: 1px solid purple;
+}
+
+button {
+  z-index: 1;
+}
+
+p, span {
+  margin: 5px;
+}
+
 .routine {
+  padding: 10px;
   border: 1px solid red;
 }
 
 .stretch {
-  border: 1px solid beige;
+  margin: 0;
+  padding: 10px;
+  border: 1px solid brown;
+}
+
+.close-link {
+  left: -10px;
+  top: -10px;
+  position: relative;
+  font-size: 16pt;
+  
 }
