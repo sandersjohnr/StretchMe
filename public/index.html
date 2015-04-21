@@ -27,16 +27,16 @@
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
+  
   <h1>stretch.me</h1>
   <hr>
 
   <nav id="navigation"></nav>
   <section id="session"></section>
 
-  <section id="main">
-    <div id="left-container"></div>
-    <div id="right-container"></div>
-  </section>
+  <div id="main"></div>
+  <div id="left-container"></div>
+  <div id="right-container"></div>
 
   <section id="stretch-modal"></section>
 
@@ -69,7 +69,6 @@
   <template id="user-template">
     <!-- <button id="button-edit">Edit Account</button> -->
     <p>Hello, {{ username }}. Please select a routine:</p>
-    <button id="button-show-all-routines">Show All</button>
     <button id="button-logout">Logout</button>
     <hr>
   </template>

@@ -65,7 +65,7 @@ App.Views.User = Backbone.View.extend({
     }).done( function () {
         $.get('/current_user').done(function (user) {
           this.$el.html( this.userTemplate(user) );
-          $('#left-container').html(new App.Views.RoutineList(user));
+          new App.Views.RoutineList(user);
         }.bind(this));
       }.bind(this))
       .fail( this.errorHandling.bind(this) );
@@ -81,7 +81,7 @@ App.Views.User = Backbone.View.extend({
     $.ajax({
       url: '/sessions',
       method: 'DELETE'
-    }).done( this.renderSession.bind(this) );
+    }).done( this.checkSession.bind(this) );
   },
 
   errorHandling: function (response) {
@@ -97,7 +97,6 @@ App.Views.User = Backbone.View.extend({
     'click #button-login'             : 'login',
 
     'click #login-link' : 'renderSession',
-    'click #button-show-all-routines' : 'showRoutines',
     'keypress #login-username, #login-password'    : 'keypressLogin'
   }
 
