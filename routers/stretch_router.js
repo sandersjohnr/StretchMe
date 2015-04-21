@@ -9,7 +9,7 @@ var stretchRouter = express.Router();
 
 stretchRouter.get('/', function (req, res) {
   Stretch
-  .findAll()
+  .findAll({ include: [Routine] })
   .then(function (stretches) {
     res.send(stretches);
   });

@@ -1,9 +1,8 @@
 App.Collections.Stretch = Backbone.Collection.extend({
 
-  url: '/stretches',
-
-  initialize: function() {
+  initialize: function(routineID) {
     cl('created: stretch collection');
+    // this.url = '/routines/' + routineID + '/stretches';
   }
   
 });

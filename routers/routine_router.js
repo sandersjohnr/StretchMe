@@ -10,7 +10,8 @@ var routineRouter = express.Router();
 routineRouter.get('/', function (req, res) {
   Routine
   .findAll({
-    where: { user_id: req.session.currentUser }
+    where: { user_id: req.session.currentUser },
+    include: [Stretch]
   })
   .then(function (routines) {
     res.send(routines);
@@ -53,15 +54,19 @@ routineRouter.put('/:id', function (req, res) {
 });
 
 // GET STRETCHES BY ROUTINE #########################################
+/*
 routineRouter.get('/:id/stretches', function (req, res) {
-  Stretch
-  .findAll({
-    where: { routine_id: req.params.id }
-  })
-  .then(function (stretches) {
-    res.send(stretches);
+  Routine
+  .findOne(req.params.id)
+  .then(function (routine) {
+    routine
+    .findStretch()
+    .then(function(stretches) {
+      res.send(stretches)
+    });
   });
 });
+*/
 
 // CREATE NEW STRETCH #########################################
 routineRouter.post('/:id/add_stretch', function (req, res) {
