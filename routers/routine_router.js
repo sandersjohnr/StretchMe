@@ -54,19 +54,19 @@ routineRouter.put('/:id', function (req, res) {
 });
 
 // GET STRETCHES BY ROUTINE #########################################
-/*
-routineRouter.get('/:id/stretches', function (req, res) {
-  Routine
-  .findOne(req.params.id)
-  .then(function (routine) {
-    routine
-    .findStretch()
-    .then(function(stretches) {
-      res.send(stretches)
-    });
-  });
-});
-*/
+
+// routineRouter.get('/:id/stretches', function (req, res) {
+//   Routine
+//   .findOne(req.params.id)
+//   .then(function (routine) {
+//     routine
+//     .findStretch()
+//     .then(function(stretches) {
+//       res.send(stretches)
+//     });
+//   });
+// });
+
 
 // CREATE NEW STRETCH #########################################
 routineRouter.post('/:id/add_stretch', function (req, res) {

@@ -6,11 +6,18 @@ var express       = require('express'),
     path          = require('path'),
     bcrypt        = require('bcrypt'),
     models        = require('./models'),
-    // router        = require('./routers')(app),
     userRouter    = require('./routers/user_router.js'),
     routineRouter = require('./routers/routine_router.js'),
-    stretchRouter = require('./routers/stretch_router.js');
+    stretchRouter = require('./routers/stretch_router.js'),
+    voiceRouter   = require('./routers/voice_router.js');
 
+// Set up routes
+app.use('/users', userRouter);
+app.use('/routines', routineRouter);
+app.use('/stretches', stretchRouter);
+app.use('/voice', voiceRouter);
+
+// Define models
 var User    = models.users;
 var Routine = models.routines;
 var Stretch = models.stretches;
@@ -25,12 +32,10 @@ app.use(session({
   resave: false,
   saveUninitialized: true
 }));
-// Set up routes
-app.use('/users', userRouter);
-app.use('/routines', routineRouter);
-app.use('/stretches', stretchRouter);
+
 // Set up front end
 app.use(express.static(__dirname + "/public"));
+
 
 // DEBUG SESSION ##########################
 app.get('/debug_session', function (req, res) {
