@@ -11,16 +11,6 @@ var express       = require('express'),
     stretchRouter = require('./routers/stretch_router.js'),
     voiceRouter   = require('./routers/voice_router.js');
 
-app.use(session({
-  secret: 'twenty-three skidoo',
-  resave: false,
-  saveUninitialized: true
-}));
-// Set up routes
-app.use('/users', userRouter);
-app.use('/routines', routineRouter);
-app.use('/stretches', stretchRouter);
-app.use('/voice', voiceRouter);
 
 // Define models
 var User    = models.users;
@@ -32,7 +22,17 @@ app.use( bodyParser.json() );
 if (process.env.NODE_ENV !== 'test') {
   app.use(morgan('dev'));
 }
+app.use(session({
+  secret: 'twenty-three skidoo',
+  resave: false,
+  saveUninitialized: true
+}));
 
+// Set up routes
+app.use('/users', userRouter);
+app.use('/routines', routineRouter);
+app.use('/stretches', stretchRouter);
+app.use('/voice', voiceRouter);
 // Set up front end
 app.use(express.static(__dirname + "/public"));
 

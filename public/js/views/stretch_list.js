@@ -27,7 +27,6 @@ App.Views.StretchList = Backbone.View.extend({
 
   events: {
     'click .stretch' : 'renderStretchFull'
-
   }
 
 });
