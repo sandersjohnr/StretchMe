@@ -13,7 +13,6 @@ App.Views.StretchPreview = Backbone.View.extend({
   showModal: function() {
     App.stretchModal.setStretch(this.model);
     App.stretchModal.showModal();
-    // new App.Views.StretchFull({model: this.model});
   },
 
   events: {
@@ -21,9 +20,3 @@ App.Views.StretchPreview = Backbone.View.extend({
   }
 
 });
-
-  // renderStretchFull: function(clicked) {
-  //   var stretchID = $(clicked.target).closest('div').data('id');
-  //   var currentStretch = this.collection.findWhere({ id: stretchID });
-  //   new App.Views.StretchFull({ model: currentStretch });
-  // },

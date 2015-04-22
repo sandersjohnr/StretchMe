@@ -11,6 +11,7 @@ App.Views.RoutineList = Backbone.View.extend({
 
   fetchAndShowRoutines: function(user) {
     this.collection.fetch({ reset: true });
+    App.stretchList.collection.reset();
   },
 
   renderRoutineList: function() {
@@ -24,13 +25,6 @@ App.Views.RoutineList = Backbone.View.extend({
       collection: routine.attributes.stretches
     }).$el);
   },
-
-  // renderMenu: function() {
-  //   this.$el.prepend($('<button id="button-show-all-routines">').text('Show All'));
-  //   this.$el.prepend($('<button id="button-new-routine">').text('New'));
-  //   this.$el.append($('<hr>'));
-  // },
-
 
   newRoutine: function() {
     this.$el.html( this.newRoutineTemplate() );

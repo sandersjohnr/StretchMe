@@ -9,7 +9,7 @@ App.Views.Routine = Backbone.View.extend({
   render: function() {
     cl(this.model)
     this.$el.html(this.routineTemplate(this.model.toJSON()));
-    // this.$('.routine-nav').hide();
+    this.$('.routine-nav').hide();
   },
 
   showButtons: function() {
@@ -17,12 +17,13 @@ App.Views.Routine = Backbone.View.extend({
   },
 
   setStretchListView: function() {
+    this.showButtons();
     App.routineList.collection.reset(this.model);
     App.stretchList.collection.reset(this.collection);
   },  
 
   events: {
-    'click' : 'setStretchListView'
+    'click .routine' : 'setStretchListView'
   }
 
 });
