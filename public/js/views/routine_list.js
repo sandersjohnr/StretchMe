@@ -2,32 +2,30 @@ App.Views.RoutineList = Backbone.View.extend({
 
   el: '#left-container',
 
-  initialize: function(user) {
+  initialize: function() {
     cl('created: routine collection view');
-    this.$el.empty();
-    this.routineTemplate = Handlebars.compile($('#routine-list-template').html());
-    this.newRoutineTemplate = Handlebars.compile($('#routine-new-template').html());
-    this.collection = new App.Collections.Routine;
-    this.collection.fetch({reset: true});
+    this.routineTemplate = Handlebars.compile($('#routine-new-template').html());
     this.listenTo(this.collection, 'reset', this.renderRoutineList);
-    this.renderMenu();
-    this.renderRoutineList();
   },
 
-  renderMenu: function() {
-    this.$el.prepend($('<button id="button-show-all-routines">').text('Show All'));
-    this.$el.prepend($('<button id="button-new-routine">').text('New'));
-    this.$el.append($('<hr>'));
+  fetchAndShowRoutines: function(user) {
+    this.collection.fetch({ reset: true });
   },
+
+  // renderMenu: function() {
+  //   this.$el.prepend($('<button id="button-show-all-routines">').text('Show All'));
+  //   this.$el.prepend($('<button id="button-new-routine">').text('New'));
+  //   this.$el.append($('<hr>'));
+  // },
 
   renderRoutineList: function() {
-    cl('rendering routine list');
-    $('#right-container').empty();
+    utter('rendering routine list');
+    // $('#right-container').empty();
     this.collection.each( this.renderRoutine, this );
   },
 
   renderRoutine: function(routine) {
-    this.$el.append(this.routineTemplate(routine.toJSON()));
+    this.$el.append(new App.Views.Routine({ model: routine }).$el);
   },
 
   setCurrentRoutine: function(clicked) {
@@ -65,11 +63,11 @@ App.Views.RoutineList = Backbone.View.extend({
   },
 
   events: {
-    'click #button-new-routine'       : 'newRoutine',
-    'click #button-create-routine'    : 'createRoutine',
-    'click #button-show-all-routines' : 'renderRoutineList',
-    'click .routine-info'             : 'setCurrentRoutine',
-    'click .button-edit-routine'      : 'editRoutine'
+    // 'click #button-new-routine'       : 'newRoutine',
+    // 'click #button-create-routine'    : 'createRoutine',
+    // 'click #button-show-all-routines' : 'renderRoutineList',
+    // 'click .routine-info'             : 'setCurrentRoutine',
+    // 'click .button-edit-routine'      : 'editRoutine'
   }
 
 });

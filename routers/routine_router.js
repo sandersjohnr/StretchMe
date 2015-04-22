@@ -7,6 +7,15 @@ var express       = require('express'),
 
 var routineRouter = express.Router();
 
+// DEBUG ROUTINES #################################
+routineRouter.get('/debug', function (req, res) {
+  Routine
+  .findAll()
+  .then(function (routines) {
+    res.send(routines);
+  });
+});
+
 // GET ALL ROUTINES FOR SESSION USER #################################
 routineRouter.get('/', function (req, res) {
   Routine

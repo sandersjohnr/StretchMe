@@ -4,11 +4,11 @@ App.Views.User = Backbone.View.extend({
 
   initialize: function() {
     cl('created: user view');
+    $('#stretch-modal').hide();
+    $('#stretch-modal').empty();
     this.userTemplate = Handlebars.compile($('#user-template').html());
     this.signupTemplate = Handlebars.compile($('#signup-template').html());
     this.loginTemplate = Handlebars.compile($('#login-template').html());
-    $('#stretch-modal').hide();
-    $('#stretch-modal').empty();
     this.checkSession();
   },
 
@@ -16,6 +16,8 @@ App.Views.User = Backbone.View.extend({
     $.get('/current_user').done( function (user) {
       if (user) {
         this.renderSession(user);
+        App.routineList.fetchAndShowRoutines(user);
+
       } else {
         this.$el.html( this.loginTemplate() );
       }
@@ -24,13 +26,7 @@ App.Views.User = Backbone.View.extend({
 
   renderSession: function(user) {
     this.$el.html( this.userTemplate(user) );
-    this.showRoutines(user);
-  },  
-
-  showRoutines: function(user) {
-    $('#right-container').html('');
-    new App.Views.RoutineList(user);
-  },
+   },  
 
   renderSignup: function () {
     this.$el.empty();
@@ -65,7 +61,7 @@ App.Views.User = Backbone.View.extend({
     }).done( function () {
         $.get('/current_user').done(function (user) {
           this.$el.html( this.userTemplate(user) );
-          new App.Views.RoutineList(user);
+          App.routineList.fetchAndShowRoutines(user);
         }.bind(this));
       }.bind(this))
       .fail( this.errorHandling.bind(this) );
@@ -77,7 +73,6 @@ App.Views.User = Backbone.View.extend({
 
   logout: function() {
     $('#main').children().empty();
-
     $.ajax({
       url: '/sessions',
       method: 'DELETE'
@@ -91,12 +86,12 @@ App.Views.User = Backbone.View.extend({
   },
 
   events: {
-    'click #signup-link'              : 'renderSignup',
-    'click #button-signup'            : 'signup',
-    'click #button-logout'            : 'logout',
-    'click #button-login'             : 'login',
-    'click #login-link'               : 'renderSession',
-    'keypress #login-username, #login-password'    : 'keypressLogin'
+    'click #signup-link'  : 'renderSignup',
+    'click #login-link'   : 'renderSession',
+    'click #signup'       : 'signup',
+    'click #logout'       : 'logout',
+    'click #login'        : 'login',
+    'keypress #login-username, #login-password' : 'keypressLogin'
   }
 
 });
