@@ -15,6 +15,9 @@ App.Views.User = Backbone.View.extend({
   checkSession: function() {
     $.get('/current_user').done( function (user) {
       if (user) {
+        $('#left-container').empty();
+        $('#right-container').empty();
+        $('#playback').empty();
         this.renderSession(user);
         App.routineList.fetchAndShowRoutines(user);
 

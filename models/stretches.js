@@ -63,7 +63,7 @@ module.exports = function(sequelize, DataTypes) {
     media_url: {
       type: DataTypes.STRING,
       validate: {
-        isUrl: { msg: 'Media_url must be a valid url'}
+        // isUrl: { msg: 'Media_url must be a valid url'}
       }
     }
   }, {

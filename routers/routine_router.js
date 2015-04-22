@@ -77,10 +77,7 @@ routineRouter.put('/:id', function (req, res) {
 //   });
 // });
 
-// CREATE NEW STRETCH #########################################
-// routineRouter.post('/stretches', function (req, res) {
 
-// });
 
 // CREATE NEW STRETCH FOR PARTICULAR ROUTINE #########################################
 routineRouter.post('/:id/add_stretch', function (req, res) {

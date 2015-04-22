@@ -8,11 +8,8 @@ App.Views.PlayRoutine = Backbone.View.extend({
     this.collection.reset(stretches);
   },
 
-  playStretch: function(stretch) {
-    // say stuff
-  },
-
   start: function(stretchNum) {
+    debugger;
     $('#left-container').empty();
     $('#right-container').empty();
     
@@ -31,11 +28,12 @@ App.Views.PlayRoutine = Backbone.View.extend({
         utter('stretch completed.');
         clearInterval(stretchTimer);
         stretchNum++;
-        if (stretchNum <= stretches.length) {
+        if (stretchNum < stretches.length) {
           current = stretches.at(stretchNum).toJSON();
           beginStretchTimer(current);         
         } else {
-          
+          App.userView.checkSession();
+          this.collection.reset({reset: false})
         }
       }
     };
@@ -51,7 +49,7 @@ App.Views.PlayRoutine = Backbone.View.extend({
         renderTime(time);
         tenSeconds(time);
         checkZero(time);
-      }, 800);
+      }, 500);
       
     };
     
@@ -84,41 +82,7 @@ App.Views.PlayRoutine = Backbone.View.extend({
 
     // loop();
     // utter('stretch completed. Good job.')
-/*
-      // set current stretch object
-      var current  = stretches.at(i).toJSON();
-      var name     = current.name;
-      var band     = current.band;
-      var roller   = current.roller;
-      var intro    = current.intro;
-      var both     = current.both_sides;
-      var setup    = current.setup_time;
-      var rep_time = current.rep_time;
-      var rep_num  = current.rep_num;
-      var equipment;
-      if (band) equipment = 'strap';
-      if (roller) equipment = 'foam roller';
-   
-      utter("The next stretch is " + name);
-      utter("you will need your" + equipment);
-      utter("The stretch begins in" + setup);
 
-      var time = 0;
-      
-      setTimeout(function() { 
-
-        utter("Begin stretch");
-
-        setTimeout(function() {
-          utter("Halfway there");
-        }, setup * 500);
-
-      }, setup * 1000);
-
-      utter("Stretch over. Good job");
-
-      i++;
-*/
   },
 
   events: {}
