@@ -23,12 +23,12 @@ App.Views.Routine = Backbone.View.extend({
   },
 
   playRoutine: function() {
-    
+    App.playView.setStretches(this.collection);
   },
 
   events: {
     'click .routine-info' : 'setStretchListView',
-    'click #play-routine' : 'playRoutine'
+    'click .play-routine' : 'playRoutine'
   }
 
 });

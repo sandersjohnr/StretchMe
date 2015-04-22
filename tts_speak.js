@@ -1,20 +1,17 @@
 'use strict';
-
-// Create the wrapper with "voicerss" provider with full options
+// Create the wrapper with "tts.js" provider with full options
 var Speak = require('tts-speak');
 var speak = new Speak({
-    tts: {  
-        engine: {                       // The engine to use for tts
-            name: 'voicerss',           
-            key: '42f4a89c75f6419f84aeafe98a84c301',     // The API key to use
-        },
+    tts: {
+        engine: 'tts',                  // The engine to use for tts
         lang: 'en-us',                  // The voice to use
+        amplitude: 100,                 // Amplitude from 0 to 200
+        wordgap: 0,                     // Gap between each word
+        pitch: 50,                      // Voice pitch
         speed: 60,                      // Speed in %
-        format: 'mp3',                  // Output audio format
-        quality: '44khz_16bit_stereo',  // Output quality
         cache: __dirname + '/cache',    // The cache directory were audio files will be stored
         loglevel: 0,                    // TTS log level (0: trace -> 5: fatal)
-        delayAfter: 0                   // Mark a delay (ms) after each message
+        delayAfter: 700                 // Mark a delay (ms) after each message
     },
     speak: {
         engine: 'auto',                 // Auto select the audio player
@@ -23,13 +20,3 @@ var speak = new Speak({
     },
     loglevel: 0                         // Wrapper log level
 });
-
-// speak.once('ready', function() {
-//     this.say('Hello world');
-
-//     this.once('idle', function() {
-//         speak.say('woot woot woot');
-//     });
-// });
-
-modules.exports = speak;
