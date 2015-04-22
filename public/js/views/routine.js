@@ -4,12 +4,12 @@ App.Views.Routine = Backbone.View.extend({
     cl('created: routine view');
     this.routineTemplate = Handlebars.compile($('#routine-template').html());
     this.render();
+    // this.$('.routine-nav').hide();
   },
 
   render: function() {
     cl(this.model)
     this.$el.html(this.routineTemplate(this.model.toJSON()));
-    this.$('.routine-nav').hide();
   },
 
   showButtons: function() {
@@ -17,13 +17,18 @@ App.Views.Routine = Backbone.View.extend({
   },
 
   setStretchListView: function() {
-    this.showButtons();
     App.routineList.collection.reset(this.model);
     App.stretchList.collection.reset(this.collection);
-  },  
+    this.showButtons();
+  },
+
+  playRoutine: function() {
+    
+  },
 
   events: {
-    'click .routine' : 'setStretchListView'
+    'click .routine-info' : 'setStretchListView',
+    'click #play-routine' : 'playRoutine'
   }
 
 });

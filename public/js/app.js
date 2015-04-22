@@ -19,8 +19,10 @@ $(function() {
     App.userView = new App.Views.User();
     App.stretchList = new App.Views.StretchList({ collection: new App.Collections.Stretch });
     App.routineList = new App.Views.RoutineList({ collection: new App.Collections.Routine });
+    App.playView = new App.Views.PlayRoutine({ collection: new App.Collections.Stretch });
     App.stretch = new App.Models.Stretch();
-    App.stretchModal = new App.Views.StretchModal({model: App.stretch});
+    App.stretchModal = new App.Views.StretchModal({ model: App.stretch });
+
 
   });
 

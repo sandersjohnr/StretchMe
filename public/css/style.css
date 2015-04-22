@@ -1,12 +1,14 @@
 #left-container {
   float: left;
-  width: 200px;
+  position: absolute;
+  width: 300px;
   border: 1px solid green;
 }
 
 #right-container {
-  float: right;
-  width: 200px;
+  position: absolute;
+  left: 350px;
+  width: 300px;
   border: 1px solid blue;
 }
 
@@ -30,9 +32,13 @@ p, span {
   margin: 5px;
 }
 
-.routine {
+.routine-info {
   padding: 10px;
   border: 1px solid red;
+}
+
+.routine-nav {
+  height: 20px;
 }
 
 .stretch {
@@ -46,5 +52,4 @@ p, span {
   top: -10px;
   position: relative;
   font-size: 16pt;
-  
 }
