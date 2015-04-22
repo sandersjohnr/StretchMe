@@ -72,7 +72,8 @@ App.Views.User = Backbone.View.extend({
   },
 
   logout: function() {
-    $('#main').children().empty();
+    $('#left-container').empty();
+    $('#right-container').empty();
     $.ajax({
       url: '/sessions',
       method: 'DELETE'
