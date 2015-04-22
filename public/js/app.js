@@ -9,7 +9,7 @@ function utter(text) {
   speechSynthesis.speak(msg);  
 };
 
-utter('Shit be fucked, motherfucker')
+// utter('Shit be fucked, motherfucker')
 
 $(function() {
 
@@ -24,7 +24,6 @@ $(function() {
 
 
   });
-
   
 });
 

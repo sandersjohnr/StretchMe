@@ -52,10 +52,10 @@
 
   <template id="login-template">
     <h2>Login</h2>
-    <p>Enter your username and password to access your routines.</p>
     <input type="text" id="login-username" placeholder="Username">
     <input type="password" id="login-password" placeholder="Password">
     <button id="login">Log In</button>
+    <p>Enter your username and password to access your routines.</p>
     <p>New user? Register for a new account <a href="#" id="signup-link">here</a>.</p>
     <hr>
   </template>
@@ -74,10 +74,10 @@
 
   <template id="user-template">
     <!-- <button id="button-edit">Edit Account</button> -->
-    <button id="logout">Logout</button>
+    <p>Hello, {{ username }}. Please select a routine:</p>
     <button id="new-routine">New Routine</button>
     <button id="show-all-routines">Show All Routines</button>
-    <p>Hello, {{ username }}. Please select a routine:</p>
+    <button id="logout">Logout</button>
     <hr>
   </template>
 
@@ -122,7 +122,6 @@
 
   <template id="stretch-full-template">
     <div>
-      <div class="close-link">x</div>
       <p class="stretch-name">{{ name }}</p>
       <div class="stretch-equipment">
         {{#if band}}

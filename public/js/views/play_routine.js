@@ -9,7 +9,7 @@ App.Views.PlayRoutine = Backbone.View.extend({
   },
 
   start: function(stretchNum) {
-    debugger;
+
     $('#left-container').empty();
     $('#right-container').empty();
     
@@ -18,7 +18,7 @@ App.Views.PlayRoutine = Backbone.View.extend({
     };
 
     var tenSeconds = function(time) {
-      if (time % 30 === 0) {
+      if (time === 5) {
         utter(time + ' seconds remaining');
       }
     };
@@ -30,8 +30,10 @@ App.Views.PlayRoutine = Backbone.View.extend({
         stretchNum++;
         if (stretchNum < stretches.length) {
           current = stretches.at(stretchNum).toJSON();
+          // announce next stretch
           beginStretchTimer(current);         
         } else {
+          utter('Congratulations! You have finished your routine!');
           App.userView.checkSession();
           this.collection.reset({reset: false})
         }
@@ -40,16 +42,19 @@ App.Views.PlayRoutine = Backbone.View.extend({
 
     var beginStretchTimer = function(current) {  
     // Set current stretch & rep time
-      var time = current.rep_time;
+      var repTime = current.rep_time;
+      var repNum = current.rep_num;
+      var time = repTime * repNum;
       var name = current.name;
-      utter('Begin ' + name + ' stretch');
       // start stretch timer
+      utter('Begin ' + name);
       stretchTimer = setInterval(function() {
         time--;
         renderTime(time);
-        tenSeconds(time);
+        if (repTime >= 30) { tenSeconds(time) };
+        
         checkZero(time);
-      }, 500);
+      }, 1000);
       
     };
     

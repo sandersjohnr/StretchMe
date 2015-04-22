@@ -125,6 +125,17 @@ app.delete('/sessions', function (req, res) {
   res.send('Successfully logged out');
 });
 
+app.delete('/users/:id', function (req, res) {
+  User
+  .findOne(req.params.id)
+  .then(function (user) {
+    user.destroy()
+    .then(function (user) {
+      res.send(user);
+    });
+  });
+});
+
 
 // Start server
 app.listen( process.env.PORT || 3000, function () {

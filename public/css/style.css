@@ -1,20 +1,32 @@
+body {
+  font-family: sans-serif;
+}
+
 #left-container {
   float: left;
   position: absolute;
-  width: 300px;
+  width: 220px;
   border: 1px solid green;
 }
 
 #right-container {
   position: absolute;
-  left: 350px;
-  width: 300px;
+  left: 250px;
+  width: 220px;
   border: 1px solid blue;
+}
+
+#all-stretches {
+  position: absolute;
+  left: 500px;
+  width: 220px;
+  border: 1px solid red;
 }
 
 #stretch-modal {
   position: absolute;
   margin: 20px 20px;
+  width: 600px;
   padding: 20px;
   top: 100px;
   background-color: darkgrey;
@@ -24,17 +36,36 @@
   border: 1px solid purple;
 }
 
+#login-username, #login-password, #login {
+  display: inline;
+}
+
 button {
   z-index: 1;
+  height: 30px;
+  width: 70px;
+}
+button#logout {
+  float: right;
+  top: -50px;
+  position: relative;
+}
+
+input {
+  height: 30px;
+  padding: 0 0 0 10px;
 }
 
 p, span {
   margin: 5px;
 }
 
+.routine {
+  height: 100px;
+}
 .routine-info {
   padding: 10px;
-  border: 1px solid red;
+  border: 1px solid orange;
 }
 
 .routine-nav {

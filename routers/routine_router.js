@@ -65,22 +65,35 @@ routineRouter.put('/:id', function (req, res) {
 
 // GET STRETCHES BY ROUTINE #########################################
 
-// routineRouter.get('/:id/stretches', function (req, res) {
-//   Routine
-//   .findOne(req.params.id)
-//   .then(function (routine) {
-//     routine
-//     .findStretch()
-//     .then(function(stretches) {
-//       res.send(stretches)
-//     });
-//   });
-// });
+routineRouter.get('/:id/stretches', function (req, res) {
+  Routine
+  .findOne(req.params.id)
+  .then(function (routine) {
+    routine
+    .findStretch()
+    .then(function(stretches) {
+      res.send(stretches)
+    });
+  });
+});
 
 
+// ADD EXISTING STRETCH TO PARTICULAR ROUTINE ##################################
+routineRouter.post('/:routineID/add_stretch/:stretchID', function (req, res) {
+  Routine
+  .findOne(req.params.routineID)
+  .then(function (routine) {
+    Stretch
+    .findOne(req.params.stretchID)
+    .then(function (stretch) {
+      routine.addStretch(stretch);
+      res.send(stretch);
+    });
+  });
+});
 
-// CREATE NEW STRETCH FOR PARTICULAR ROUTINE #########################################
-routineRouter.post('/:id/add_stretch', function (req, res) {
+// CREATE NEW STRETCH FOR PARTICULAR ROUTINE ##################################
+routineRouter.post('/:id/new_stretch', function (req, res) {
   Routine
   .findOne(req.params.id)
   .then(function (routine) {
