@@ -7,6 +7,15 @@ var express       = require('express'),
 
 var routineRouter = express.Router();
 
+// DEBUG ROUTINES #################################
+routineRouter.get('/debug', function (req, res) {
+  Routine
+  .findAll()
+  .then(function (routines) {
+    res.send(routines);
+  });
+});
+
 // GET ALL ROUTINES FOR SESSION USER #################################
 routineRouter.get('/', function (req, res) {
   Routine
@@ -68,8 +77,12 @@ routineRouter.put('/:id', function (req, res) {
 //   });
 // });
 
-
 // CREATE NEW STRETCH #########################################
+// routineRouter.post('/stretches', function (req, res) {
+
+// });
+
+// CREATE NEW STRETCH FOR PARTICULAR ROUTINE #########################################
 routineRouter.post('/:id/add_stretch', function (req, res) {
   Routine
   .findOne(req.params.id)

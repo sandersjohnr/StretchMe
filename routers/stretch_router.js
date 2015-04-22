@@ -15,7 +15,13 @@ stretchRouter.get('/', function (req, res) {
   });
 });
 
-
+stretchRouter.post('/', function (req, res) {
+  Stretch
+  .create(req.body)
+  .then(function(stretch) {
+    res.send(stretch);
+  });
+});
 
 
 

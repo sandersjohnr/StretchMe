@@ -4,23 +4,27 @@ App = {
   Views: {}
 };
 
+
+function utter(text) {
+  var msg = new SpeechSynthesisUtterance(text);
+  speechSynthesis.speak(msg);  
+};
+
+// utter('Shit be fucked')
+
 $(function() {
 
-  // $.post('/sessions', {username: 'sanders', password: 'resipsa'}).done(function(){
+  $.post('/sessions', {username: 'sanders', password: 'resipsa'}).done(function(){
 
-  App.userView = new App.Views.User;
-    // App.routines = new App.Collections.Routine;
+    App.userView = new App.Views.User();
+    App.stretchList = new App.Views.StretchList({ collection: new App.Collections.Stretch });
+    App.routineList = new App.Views.RoutineList({ collection: new App.Collections.Routine });
+    App.stretch = new App.Models.Stretch();
+    App.stretchModal = new App.Views.StretchModal({model: App.stretch});
 
-  // });
+  });
 
-  var utter = function(text) {
-    var msg = new SpeechSynthesisUtterance(text);
-    speechSynthesis.speak(msg);
-  };
-
-  utter('Welcome to stretch me bro')
   
-
 });
 
 

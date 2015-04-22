@@ -2,46 +2,37 @@ App.Views.RoutineList = Backbone.View.extend({
 
   el: '#left-container',
 
-  initialize: function(user) {
+  initialize: function() {
     cl('created: routine collection view');
-    this.$el.empty();
-    this.routineTemplate = Handlebars.compile($('#routine-list-template').html());
-    this.newRoutineTemplate = Handlebars.compile($('#routine-new-template').html());
-    this.collection = new App.Collections.Routine;
-    this.collection.fetch({reset: true});
+    // debugger;
+    this.routineTemplate = Handlebars.compile($('#routine-new-template').html());
     this.listenTo(this.collection, 'reset', this.renderRoutineList);
-    this.renderMenu();
-    this.renderRoutineList();
   },
 
-  renderMenu: function() {
-    this.$el.prepend($('<button id="button-show-all-routines">').text('Show All'));
-    this.$el.prepend($('<button id="button-new-routine">').text('New'));
-    this.$el.append($('<hr>'));
+  fetchAndShowRoutines: function(user) {
+    this.collection.fetch({ reset: true });
   },
 
   renderRoutineList: function() {
-    cl('rendering routine list');
-    $('#right-container').empty();
+    this.$el.empty();
     this.collection.each( this.renderRoutine, this );
   },
 
   renderRoutine: function(routine) {
-    this.$el.append(this.routineTemplate(routine.toJSON()));
+    this.$el.append(new App.Views.Routine({ 
+      model: routine,
+      collection: routine.attributes.stretches
+    }).$el);
   },
 
-  setCurrentRoutine: function(clicked) {
-    var routineID = $(clicked.target).closest('div').data('id');
-    var currentRoutine = this.collection.findWhere({ id: routineID });
-    this.$el.empty();
-    this.renderMenu();
-    this.renderRoutine(currentRoutine);
-    $('#right-container').empty();
-    new App.Views.StretchList(currentRoutine);
-  },
+  // renderMenu: function() {
+  //   this.$el.prepend($('<button id="button-show-all-routines">').text('Show All'));
+  //   this.$el.prepend($('<button id="button-new-routine">').text('New'));
+  //   this.$el.append($('<hr>'));
+  // },
+
 
   newRoutine: function() {
-    this.$el.empty();
     this.$el.html( this.newRoutineTemplate() );
   },
 
@@ -52,7 +43,6 @@ App.Views.RoutineList = Backbone.View.extend({
       $('.error').remove();
       this.$el.append($('<li class="error">You must enter a name for your routine</li>'));
     } else {
-      this.$el.empty();
       this.collection.add({
         name: routineName,
         description: routineDesc
@@ -65,11 +55,11 @@ App.Views.RoutineList = Backbone.View.extend({
   },
 
   events: {
-    'click #button-new-routine'       : 'newRoutine',
-    'click #button-create-routine'    : 'createRoutine',
-    'click #button-show-all-routines' : 'renderRoutineList',
-    'click .routine-info'             : 'setCurrentRoutine',
-    'click .button-edit-routine'      : 'editRoutine'
+    // 'click #button-new-routine'       : 'newRoutine',
+    // 'click #button-create-routine'    : 'createRoutine',
+    // 'click #button-show-all-routines' : 'renderRoutineList',
+    // 'click .routine-info'             : 'setCurrentRoutine',
+    // 'click .button-edit-routine'      : 'editRoutine'
   }
 
 });

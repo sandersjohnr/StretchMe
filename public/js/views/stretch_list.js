@@ -4,14 +4,12 @@ App.Views.StretchList = Backbone.View.extend({
 
   initialize: function(routineModel) {
     cl('created: stretch list view');
-    var stretchArray = routineModel.attributes.stretches;
-    this.collection = new App.Collections.Stretch(stretchArray);
-    // this.collection.fetch({ reset: true });
-    this.listenTo( this.collection, 'add', this.renderStretchList);
-    this.renderStretchList();
+    // this.listenTo( this.collection, 'change', this.renderStretchPreview);
+    this.listenTo( this.collection, 'reset', this.renderStretchList);
   },
 
   renderStretchList: function() {
+    this.$el.empty();
     this.collection.each( this.renderStretchPreview, this );
   },
 
@@ -19,14 +17,12 @@ App.Views.StretchList = Backbone.View.extend({
     this.$el.append(new App.Views.StretchPreview({ model: stretch }).$el);
   },
 
-  renderStretchFull: function(clicked) {
-    var stretchID = $(clicked.target).closest('div').data('id');
-    var currentStretch = this.collection.findWhere({ id: stretchID });
-    new App.Views.StretchFull({ model: currentStretch });
+  renderAllStretches: function(routineModel) {
+    this.collection.fetch({ reset: true });
   },
 
   events: {
-    'click .stretch' : 'renderStretchFull'
+    
   }
 
 });
