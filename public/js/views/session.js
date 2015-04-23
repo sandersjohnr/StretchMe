@@ -3,7 +3,6 @@ App.Views.User = Backbone.View.extend({
   el: '#session',
 
   initialize: function() {
-    cl('created: user view');
     $('#stretch-modal').hide();
     $('#stretch-modal').empty();
     this.userTemplate = Handlebars.compile($('#user-template').html());

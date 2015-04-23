@@ -2,7 +2,6 @@ App.Views.RoutineList = Backbone.View.extend({
   el: '#left-container',
 
   initialize: function() {
-    cl('created: routine collection view');
     this.newRoutineTemplate = Handlebars.compile($('#routine-new-template').html());
     this.listenTo(this.collection, 'reset', this.render);
     this.listenTo(this.collection, 'destroy', this.render);
