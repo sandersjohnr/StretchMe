@@ -3,7 +3,6 @@ App.Views.StretchAll = Backbone.View.extend({
   el: '#all-stretches',
 
   initialize: function(routineModel) {
-    // this.listenTo( this.collection, 'change', this.renderStretchPreview);
     this.listenTo( this.collection, 'reset', this.renderStretchList);
   },
 
@@ -18,10 +17,6 @@ App.Views.StretchAll = Backbone.View.extend({
 
   renderAllStretches: function(routineModel) {
     this.collection.fetch({ reset: true });
-  },
-
-  events: {
-    
   }
 
 });

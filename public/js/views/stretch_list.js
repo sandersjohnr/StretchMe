@@ -3,8 +3,6 @@ App.Views.StretchList = Backbone.View.extend({
   el: '#right-container',
 
   initialize: function(routineModel) {
-    cl('created: stretch list view');
-    // this.listenTo( this.collection, 'change', this.renderStretchPreview);
     this.listenTo( this.collection, 'reset', this.renderStretchList);
     this.listenTo( this.collection, 'change' , this.renderStretchList);
   },

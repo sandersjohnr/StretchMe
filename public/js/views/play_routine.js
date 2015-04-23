@@ -1,5 +1,6 @@
 App.Views.PlayRoutine = Backbone.View.extend({
   el: '#playback',
+  
   initialize: function() {
     this.listenTo(this.collection, 'reset', this.start);
   },
@@ -36,7 +37,6 @@ App.Views.PlayRoutine = Backbone.View.extend({
         if (stretchNum < stretches.length) {
           currentModel = stretches.at(stretchNum);
           beginSetupTimer(currentModel);
-         
         } else {
           utter('Congratulations! You have finished your routine!');
           App.userView.checkSession();
@@ -47,15 +47,14 @@ App.Views.PlayRoutine = Backbone.View.extend({
 
     var beginSetupTimer = function(currentModel) {
       // SHOW MODAL
-      App.stretchModal.setStretch(currentModel)
+      App.stretchModal.setStretch(currentModel);
 
       var current = currentModel.toJSON();
       var setupTime = current.setup_time;
 
-      utter('The next stretch is ' + current.name /*+ ', will begin in '+ (setupTime-3) + 'seconds'*/);
+      utter('The next stretch is ' + current.name);
       if (current.roller) utter('Grab your foam roller');
       if (current.band) utter('Grab your strap');
-      // utter(current.intro);
       utter(current.instruction);
       // Announce reps and rep time
       if (current.both_sides) utter('Perform for both left and right sides');

@@ -21,7 +21,6 @@ App.Views.StretchPreview = Backbone.View.extend({
     $.post('/routines/'+routineID+'/remove_stretch/'+stretchID).done (function(){
       App.routineList.fetchAndShowRoutines();
       $.get('/routines/' + routineID).done(function(routine) {
-        // App.routineList.fetchAndShowRoutines();
         App.stretchList.collection.reset();
       })
     });

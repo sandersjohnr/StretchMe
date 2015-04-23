@@ -47,7 +47,7 @@ var stretches = [
     both_sides: true, 
     intro: 'Lay down on your mat', 
     instruction: 'Hold your knee with your opposite hand and draw your knee up and over towards your opposite shoulder',
-    setup_time: 10,
+    setup_time: 20,
     rep_time: 45, 
     rep_num: 2,
     media_url: 'https://www.youtube.com/embed/RTqqiy7cUL0' 
@@ -71,7 +71,7 @@ var stretches = [
     both_sides: false, 
     intro: 'Get up on a raised surface', 
     instruction: 'Bend one knee keeping your foot on the table. Drop your other lef off the side of the table. Use a stretching strap to pull your ankle in towards your buttock',
-    setup_time: 10,
+    setup_time: 20,
     rep_time: 45, 
     rep_num: 2,
     media_url: 'https://www.youtube.com/embed/gMEGo4d_-Vg'
@@ -83,7 +83,7 @@ var stretches = [
     both_sides: false, 
     intro: 'Lay down on your mat', 
     instruction: 'Lying supine with the knees bent, feet together, let the knees fall out to the side until a stretch is felt through the groin',
-    setup_time: 10,
+    setup_time: 20,
     rep_time: 45, 
     rep_num: 2,
     media_url: "https://www.youtube.com/embed/i1rQgNrh_f8"
@@ -95,7 +95,7 @@ var stretches = [
     both_sides: false, 
     intro: 'Lay down on your mat', 
     instruction: 'Lie on your back with knees comfortably bent. Flatten your back against the table using your stomach muscles to press your spine downwards towards the mat.',
-    setup_time: 10,
+    setup_time: 20,
     rep_time: 3, 
     rep_num: 30,
     media_url: ''
@@ -107,7 +107,7 @@ var stretches = [
     both_sides: false, 
     intro: 'Lay down on your mat', 
     instruction: 'While lying on your back with your knees bent, slowly raise up one foot a few inches keeping your abdominals activated with toes pointed toward the ceiling, and the set it back down. Alternate legs',
-    setup_time: 10,
+    setup_time: 20,
     rep_time: 5, 
     rep_num: 15,
     media_url: 'https://www.youtube.com/embed/gikdpm9oNnk'
@@ -119,7 +119,7 @@ var stretches = [
     both_sides: false, 
     intro: 'Lay down on your mat', 
     instruction: 'While lying on your back, raise up your knee with your toes pointed toward your nose and press it into the ground. Perform press into knee and table at the same time. Contract abdominals, flattening spine into the floor. Alternate knees.',
-    setup_time: 10,
+    setup_time: 20,
     rep_time: 5, 
     rep_num: 15,
     media_url: 'https://www.youtube.com/embed/_NloUYVLoFI'

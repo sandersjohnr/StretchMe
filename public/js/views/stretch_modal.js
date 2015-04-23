@@ -16,6 +16,7 @@ App.Views.StretchModal = Backbone.View.extend({
   },
 
   showModal: function() {
+    $('#stretch-modal').show();
     this.$el.fadeIn(500);
   },
 
@@ -25,8 +26,7 @@ App.Views.StretchModal = Backbone.View.extend({
   },
 
   events: {
-    'click .close-link' : 'hideModal',
-    'click *'           : 'hideModal'
+    'click' : 'hideModal'
   }
 
 });

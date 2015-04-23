@@ -17,7 +17,7 @@ App.Views.User = Backbone.View.extend({
     $('#left-container').empty();
     $('#right-container').empty();
     $('#all-stretches').empty();
-    
+
     $.get('/current_user').done( function (user) {
       if (user) {
         this.renderSession(user);

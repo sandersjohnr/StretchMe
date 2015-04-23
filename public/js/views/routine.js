@@ -17,12 +17,12 @@ App.Views.Routine = Backbone.View.extend({
   },
 
   playRoutine: function() {
+    $('#all-stretches').empty();
     App.playView.setStretches(this.collection);
   },
 
   deleteRoutine: function() {
     this.model.destroy();
-    
   },
 
   events: {

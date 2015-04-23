@@ -106,9 +106,11 @@
   </template> 
 
   <template id="routine-new-template">
-    <input type="text" id="routine-name" placeholder="Name your routine">
-    <input type="text" id="routine-description" placeholder="Enter a description (optional)">
-    <button id="create-routine">Create</button>
+    <div id="routine-new">
+      <input type="text" id="routine-name" placeholder="Name your routine">
+      <input type="text" id="routine-description" placeholder="Enter a description (optional)">
+      <button id="create-routine">Create</button>
+    </div>
   </template>
 
   <!-- Stretches -->
@@ -136,25 +138,23 @@
   </template>  
 
   <template id="stretch-modal-template">
-    <div>
-      <h2 class="stretch-name">{{ name }}</h2>
-      <div class="stretch-equipment">
-        {{#if band}}
-          <p>Requires a strap.</p>
-        {{/if}}
-        {{#if roller}}
-          <p>Requires a foam roller.</p>
-        {{/if}}
-      </div> 
-      <span>Number of Reps: {{rep_num}}</span>
-      {{#if both_sides}}
-        <span>on each side. </span>
+    <h2 class="stretch-name">{{ name }}</h2>
+    <div class="stretch-equipment">
+      {{#if band}}
+        <p>Requires a strap.</p>
       {{/if}}
-      <p>Seconds per Rep: {{rep_time}}</p>
-      <p class="stretch-directions">{{ instruction }}</p>
-      <div class="video">
-        <iframe width="560" height="315" src="https://www.youtube.com/embed/hfvd04VyXbs" frameborder="0" autoplay="1" controls="2" allowfullscreen></iframe>
-      </div>
+      {{#if roller}}
+        <p>Requires a foam roller.</p>
+      {{/if}}
+    </div> 
+    <span>Number of Reps: {{rep_num}}</span>
+    {{#if both_sides}}
+      <span>on each side. </span>
+    {{/if}}
+    <p>Seconds per Rep: {{rep_time}}</p>
+    <p class="stretch-directions">{{ instruction }}</p>
+    <div class="video">
+      <iframe width="560" height="315" src="{{media_url}}" frameborder="0" autoplay="1" controls="2" allowfullscreen></iframe>
     </div>
   </template>
 
