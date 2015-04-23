@@ -9,7 +9,7 @@ App.Views.RoutineList = Backbone.View.extend({
     this.listenTo(this.collection, 'reset', this.renderRoutineList);
   },
 
-  fetchAndShowRoutines: function(user) {
+  fetchAndShowRoutines: function() {
     this.collection.fetch({ reset: true });
     App.stretchList.collection.reset();
   },

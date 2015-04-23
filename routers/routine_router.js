@@ -44,7 +44,7 @@ routineRouter.post('/', /*authenticate, restrictAccess, */function (req, res) {
 // GET ROUTINE BY ID ##########################################
 routineRouter.get('/:id', function (req, res) {
   Routine
-  .findOne(req.params.id)
+  .findOne(req.params.id, { include: [Stretch] })
   .then(function (routine) {
     res.send(routine);
   });
@@ -65,29 +65,49 @@ routineRouter.put('/:id', function (req, res) {
 
 // GET STRETCHES BY ROUTINE #########################################
 
-routineRouter.get('/:id/stretches', function (req, res) {
-  Routine
-  .findOne(req.params.id)
-  .then(function (routine) {
-    routine
-    .findStretch()
-    .then(function(stretches) {
-      res.send(stretches)
-    });
-  });
-});
+// routineRouter.get('/:id/stretches', function (req, res) {
+//   Routine
+//   .findOne(req.params.id)
+//   .then(function (routine) {
+//     routine
+//     .findStretch()
+//     .then(function(stretches) {
+//       res.send(stretches)
+//     });
+//   });
+// });
 
 
 // ADD EXISTING STRETCH TO PARTICULAR ROUTINE ##################################
 routineRouter.post('/:routineID/add_stretch/:stretchID', function (req, res) {
   Routine
-  .findOne(req.params.routineID)
+  .findOne(req.params.routineID, { include: [Stretch] })
   .then(function (routine) {
     Stretch
     .findOne(req.params.stretchID)
     .then(function (stretch) {
-      routine.addStretch(stretch);
-      res.send(stretch);
+      routine
+      .addStretch(stretch)
+      .then(function (info) {
+        res.send(stretch);
+      });
+    });
+  });
+});
+
+// REMOVE  STRETCH FROM PARTICULAR ROUTINE ##################################
+routineRouter.post('/:routineID/remove_stretch/:stretchID', function (req, res) {
+  Routine
+  .findOne(req.params.routineID, { include: [Stretch] })
+  .then(function (routine) {
+    Stretch
+    .findOne(req.params.stretchID)
+    .then(function (stretch) {
+      routine
+      .removeStretch(stretch)
+      .then(function (info) {
+        res.send();     
+      });
     });
   });
 });

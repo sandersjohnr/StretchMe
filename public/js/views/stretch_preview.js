@@ -8,7 +8,6 @@ App.Views.StretchPreview = Backbone.View.extend({
 
   renderPreview: function() {
     this.$el.html(this.previewTemplate(this.model.toJSON()));
-    
   },
 
   showModal: function() {
@@ -16,8 +15,21 @@ App.Views.StretchPreview = Backbone.View.extend({
     App.stretchModal.showModal();
   },
 
+  removeStretch: function() {
+    var stretchID = this.$('.stretch-info').data('id');
+    var routineID = $('.routine-info').data('id');
+    $.post('/routines/'+routineID+'/remove_stretch/'+stretchID).done (function(){
+      App.routineList.fetchAndShowRoutines();
+      $.get('/routines/' + routineID).done(function(routine) {
+        // App.routineList.fetchAndShowRoutines();
+        App.stretchList.collection.reset();
+      })
+    });
+  },
+
   events: {
-    'click' : 'showModal'
+    'click .stretch-info' : 'showModal',
+    'click .remove-stretch' : 'removeStretch'
   }
 
 });

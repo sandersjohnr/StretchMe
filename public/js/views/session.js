@@ -20,7 +20,7 @@ App.Views.User = Backbone.View.extend({
         $('#all-stretches').empty();
         $('#playback').hide();
         this.renderSession(user);
-        App.routineList.fetchAndShowRoutines(user);
+        App.routineList.fetchAndShowRoutines();
       } else {
         this.$el.html( this.loginTemplate() );
       }
@@ -77,6 +77,7 @@ App.Views.User = Backbone.View.extend({
   logout: function() {
     $('#left-container').empty();
     $('#right-container').empty();
+    $('#all-stretches').empty();
     $.ajax({
       url: '/sessions',
       method: 'DELETE'
@@ -95,7 +96,7 @@ App.Views.User = Backbone.View.extend({
 
   events: {
     'click #signup-link'  : 'renderSignup',
-    'click #login-link'   : 'renderSession',
+    'click #login-link'   : 'checkSession',
     'click #signup'       : 'signup',
     'click #logout'       : 'logout',
     'click #login'        : 'login',

@@ -9,7 +9,7 @@ function utter(text) {
   speechSynthesis.speak(msg);  
 };
 
-utter('Welcome to stretch me bro!')
+// utter('Welcome to stretch me bro!')
 
 $(function() {
 

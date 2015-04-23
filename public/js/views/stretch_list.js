@@ -15,15 +15,12 @@ App.Views.StretchList = Backbone.View.extend({
 
   renderStretchPreview: function(stretch) {
     this.$el.append(new App.Views.StretchPreview({ model: stretch }).$el);
-    $('.stretch-nav').hide();
   },
 
   renderAllStretches: function(routineModel) {
     this.collection.fetch({ reset: true });
-  },
-
-  events: {
-    
   }
+
+
 
 });

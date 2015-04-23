@@ -1,58 +1,100 @@
 body {
-  font-family: sans-serif;
-  background-color: rgb(168, 216, 243);
+  font-family: Helvetica, sans-serif;
+  background-color: rgb(107, 109, 111);
+  background: url('http://www.hdwallpaperpc.com/preview/Cat_Stretch_38081/resolution_1280x800');
 }
+
 hr {
   display: none;
 }
-#session {
-  background-color: rgb(156, 156, 255);
-  padding: 20px;
-  /* border: 3px solid white; */
-  border-radius: -5px;
-  box-shadow: 4px 4px 6px;
-  line-height: 2.2;
-  margin: 0 -15px;
-  box-sizing: border-box;
+/*section {
+  border: 3px solid purple;
+}
+div {
+  border: 1px solid red;
+}*/
+div.stretch-info {
+  width: auto;
+  height: 47px;
 }
 
+p.stretch-info {
+  line-height: 1.5;
+}
+
+a {
+  text-decoration: none;
+  color: pink;
+}
+h1 {
+  text-align: center;
+  font-size: 40pt;
+  color: white;
+  text-shadow: 3px 3px 3px black;
+  margin: 14px;
+}
+
+h2 {
+  font-size: 24pt;
+  color: white;
+  text-shadow: 3px 3px 3px black;
+}
+
+#session {
+  background-color: rgb(156, 156, 255);
+  border: 3px solid purple;
+  padding: 20px;
+  padding-top: 20px;
+  border-radius: -5px;
+  box-shadow: 4px 4px 6px;
+  line-height: 1.2;
+  box-sizing: border-box;
+  border-radius: 27px;
+  height: auto;
+}
+
+#session #user-nav {
+  height: 35px;
+}
 #session p {
-    font-size: 15pt;
-    color: white;
-    text-shadow: 2px 2px 2px black;
+  font-size: 15pt;
+  color: white;
+  text-shadow: 2px 2px 2px black;
+  margin-bottom: 10px;
+  /* background-color: rgb(202, 145, 255); */
+}
+#session input {
+  border-radius: 30px;
 }
 
 #left-container {
   float: left;
   position: absolute;
   width: 220px;
-  border: 1px solid green;
   margin-top: 10px;
   left: 20px;
 }
 
-section {
-  border: 3px solid purple;
-}
-div {
-  border: 1px solid red;
+#main {
+  content: justify;
 }
 
 #right-container {
-  position: relative;
-  display: inline-grid;
-  left: 0;
+  position: absolute;
+  left: 250px;
   width: 220px;
-  margin: 10px auto;
-  border: 1px solid blue;
+  margin: 10px;
+  height: 500px;
+  overflow: scroll;
 }
 
 #all-stretches {
   position: absolute;
-  display: inline-grid;
   right: 20px;
   width: 220px;
-  border: 1px solid red;
+  overflow: scroll;
+  height: 500px;
+  margin: 10px;
 }
 
 #all-stretches.stretch{
@@ -93,8 +135,8 @@ button {
   z-index: 1;
   height: 40px;
   width: 80px;
-  border-radius: 10px;
-  background-color: white;
+  border-radius: 20px;
+  background-color: rgba(182, 55, 0, 0.56);
   border: none;
   font-size: 10pt;
   padding: 5px;
@@ -102,10 +144,42 @@ button {
   box-shadow: 2px 2px 5px black;
 }
 
-button#logout {
-  float: right;
-  position: relative;
+button.remove-stretch {}
+
+button.remove-stretch {}
+
+button.remove-stretch {}
+
+button.remove-stretch {}
+
+#session button {
+  width: 100px;
 }
+button#new-routine {
+  position: absolute;
+  left: 30px;
+  display: inline-block;
+  background-color: rgb(202, 145, 255);
+}
+button#show-all-routines {
+  position: absolute;
+  left: 140px; 
+  display: inline-block;
+  background-color: rgb(202, 145, 255);
+}
+button#logout {
+  position: absolute;
+  right: 30px;
+  display: inline-block;
+  background-color: rgb(202, 145, 255);
+}
+button#show-all-stretches {
+  position: absolute;
+  right: 140px;
+  display: inline-block;
+  background-color: rgb(202, 145, 255);
+}
+
 
 button.play-routine, button.edit-routine {
   height: 25px;
@@ -114,12 +188,16 @@ button.play-routine, button.edit-routine {
 
 button.add-stretch {
   height: 25px;
-  background-color: brown;
+  background-color: rgba(13, 79, 17, 0.41);
+  position: relative;
 }
-
+button.remove-stretch {
+  height: 25px;
+}
 input {
-  height: 30px;
+  height: 40px;
   padding: 0 0 0 10px;
+  font-size: 14pt;
 }
 
 p, span {
@@ -139,32 +217,52 @@ p.routine-description {
 
 .routine {
   height: 100px;
-  background-color: rgb(255, 255, 157);
+  background-color: rgb(255, 255, 136);
   margin: 10px 0px;
   border-radius: 16px;
   overflow: hidden;
-  box-shadow: 2px 2px 4px rgb(71, 71, 71);
+  box-shadow: 2px 2px 4px black;
   color: rgb(182, 118, 0);
   border: 2px solid orange;
-  /* text-shadow: 1px 1px 1px orange; */
 }
 .routine-info {
   padding: 10px;
-  border: 1px solid orange;
 }
 
 .routine-nav {
   height: 20px;
+  text-align: center;
 }
 
-.stretch {
+.stretch-preview {
   height: 80px;
   background-color: rgb(255, 169, 169);
   margin: 10px 0px;
   border-radius: 16px;
   overflow: hidden;
-  box-shadow: 2px 2px 4px rgb(71, 71, 71);
+  box-shadow: 2px 2px 4px black;
   color: rgb(182, 55, 0);
+  font-size: 14pt;
+  text-align: center;
+  border: 3px solid rgb(182, 55, 0);
+}
+.stretch-to-add {
+  height: 80px;
+  background-color: rgb(117, 208, 125);
+  border:  3px solid;
+  color: darkgreen;
+  margin: 10px 0px;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 2px 2px 4px black);
+  color: rgb(13, 79, 17);
+  font-size: 14pt;
+  text-align: center;
+}
+
+.stretch-info {
+  position: relative;
+
 }
 .close-link {
   left: -10px;

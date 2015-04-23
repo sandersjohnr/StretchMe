@@ -23,6 +23,18 @@ stretchRouter.post('/', function (req, res) {
   });
 });
 
+stretchRouter.delete('/:id', function (req, res) {
+  Stretch
+  .findOne(req.params.id)
+  .then(function(stretch) {
+    stretch
+    .destroy()
+    .then(function(stretch){
+      res.send(stretch);
+    });
+  });
+});
+
 
 
 

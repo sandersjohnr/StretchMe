@@ -13,7 +13,7 @@ App.Views.StretchAll = Backbone.View.extend({
   },
 
   renderStretchPreview: function(stretch) {
-    this.$el.append(new App.Views.StretchPreview({ model: stretch }).$el);
+    this.$el.append(new App.Views.StretchToAdd({ model: stretch }).$el);
   },
 
   renderAllStretches: function(routineModel) {
