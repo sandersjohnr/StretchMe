@@ -94,6 +94,10 @@ App.Views.User = Backbone.View.extend({
     App.allStretches.renderAllStretches();
   },
 
+  newRoutine: function() {
+    App.routineList.newRoutine();
+  },
+
   events: {
     'click #signup-link'  : 'renderSignup',
     'click #login-link'   : 'checkSession',
@@ -102,6 +106,7 @@ App.Views.User = Backbone.View.extend({
     'click #login'        : 'login',
     'click #show-all-routines' : 'checkSession',
     'click #show-all-stretches': 'showAllStretches',
+    'click #new-routine' : 'newRoutine',
     'keypress #login-username, #login-password' : 'keypressLogin'
   }
 
