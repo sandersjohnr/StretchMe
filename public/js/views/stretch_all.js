@@ -1,9 +1,8 @@
-App.Views.StretchList = Backbone.View.extend({
+App.Views.StretchAll = Backbone.View.extend({
 
-  el: '#right-container',
+  el: '#all-stretches',
 
   initialize: function(routineModel) {
-    cl('created: stretch list view');
     // this.listenTo( this.collection, 'change', this.renderStretchPreview);
     this.listenTo( this.collection, 'reset', this.renderStretchList);
   },
@@ -15,7 +14,6 @@ App.Views.StretchList = Backbone.View.extend({
 
   renderStretchPreview: function(stretch) {
     this.$el.append(new App.Views.StretchPreview({ model: stretch }).$el);
-    $('.stretch-nav').hide();
   },
 
   renderAllStretches: function(routineModel) {
