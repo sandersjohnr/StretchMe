@@ -17,10 +17,10 @@ App.Views.User = Backbone.View.extend({
       if (user) {
         $('#left-container').empty();
         $('#right-container').empty();
-        $('#playback').empty();
+        $('#all-stretches').empty();
+        $('#playback').hide();
         this.renderSession(user);
         App.routineList.fetchAndShowRoutines(user);
-
       } else {
         this.$el.html( this.loginTemplate() );
       }
@@ -89,6 +89,10 @@ App.Views.User = Backbone.View.extend({
     this.$el.append($('<li class="error">' + err.msg + '</li>'))
   },
 
+  showAllStretches: function() {
+    App.allStretches.renderAllStretches();
+  },
+
   events: {
     'click #signup-link'  : 'renderSignup',
     'click #login-link'   : 'renderSession',
@@ -96,6 +100,7 @@ App.Views.User = Backbone.View.extend({
     'click #logout'       : 'logout',
     'click #login'        : 'login',
     'click #show-all-routines' : 'checkSession',
+    'click #show-all-stretches': 'showAllStretches',
     'keypress #login-username, #login-password' : 'keypressLogin'
   }
 

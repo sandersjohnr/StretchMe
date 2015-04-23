@@ -22,12 +22,14 @@
   <script src="js/models/stretch.js"></script>
   <script src="js/collections/routine_coll.js"></script>
   <script src="js/collections/stretch_coll.js"></script>
+  <script src="js/collections/stretches_all.js"></script>
   <script src="js/views/session.js"></script>
   <script src="js/views/routine.js"></script>
   <script src="js/views/stretch_preview.js"></script>
   <script src="js/views/stretch_modal.js"></script>
   <script src="js/views/routine_list.js"></script>
   <script src="js/views/stretch_list.js"></script>
+  <script src="js/views/stretch_all.js"></script>
   <script src="js/views/play_routine.js"></script>
 
   <link rel="stylesheet" href="css/style.css">
@@ -39,12 +41,14 @@
 
   <nav id="navigation"></nav>
   <section id="session"></section>
-
-  <div id="left-container"></div>
-  <div id="right-container"></div>
-
   <section id="playback"></section>
   <section id="stretch-modal"></section>
+  <section id="main">
+    <div id="left-container"></div>
+    <div id="right-container"></div>
+    <div id="all-stretches"></div>    
+  </section>
+
 
   <!-- TEMPLATES -->
 
@@ -77,6 +81,7 @@
     <p>Hello, {{ username }}. Please select a routine:</p>
     <button id="new-routine">New Routine</button>
     <button id="show-all-routines">Show All Routines</button>
+    <button id="show-all-stretches">Show All Stretches</button>
     <button id="logout">Logout</button>
     <hr>
   </template>
@@ -106,10 +111,15 @@
   <!-- Stretches -->
 
   <template id="stretch-preview-template">
-    <div class="stretch" data-id="{{id}}">
-      <p class="stretch-name">{{ name }}</p>
+    <div class="stretch">
+      
+      <div class="stretch-info" data-id="{{id}}">
+        <p class="stretch-name">{{ name }}</p>
+      </div>
+      <div class="stretch-nav">
+        <button class="add-stretch">Add</button>
+      </div>
     </div>
-      <!-- <button id="button-remove">x</button> -->
   </template>  
 
   <template id="stretch-all-template">
@@ -120,7 +130,7 @@
     <button id="button-add"></button>
   </template>
 
-  <template id="stretch-full-template">
+  <template id="stretch-modal-template">
     <div>
       <p class="stretch-name">{{ name }}</p>
       <div class="stretch-equipment">
@@ -131,7 +141,7 @@
           <p>Requires a foam roller.</p>
         {{/if}}
       </div> 
-      <span>Number of Reps: {{rep_num}} </span>
+      <span>Number of Reps: {{rep_num}}</span>
       {{#if both_sides}}
         <span>on each side. </span>
       {{/if}}
@@ -143,6 +153,5 @@
     </div>
   </template>
 
-  <script src="js/bundle.js"></script>
 </body>
 </html>

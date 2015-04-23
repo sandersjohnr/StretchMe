@@ -1,8 +1,8 @@
 App.Views.StretchModal = Backbone.View.extend({
   el: '#stretch-modal',
-  
+
   initialize: function() {
-    this.template = Handlebars.compile($('#stretch-full-template').html());
+    this.template = Handlebars.compile($('#stretch-modal-template').html());
     this.listenTo(this.model, 'change', this.render);
   },
 

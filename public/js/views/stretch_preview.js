@@ -8,6 +8,7 @@ App.Views.StretchPreview = Backbone.View.extend({
 
   renderPreview: function() {
     this.$el.html(this.previewTemplate(this.model.toJSON()));
+    
   },
 
   showModal: function() {
