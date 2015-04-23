@@ -2,17 +2,13 @@ body {
   font-family: Helvetica, sans-serif;
   background-color: rgb(107, 109, 111);
   background: url('http://www.hdwallpaperpc.com/preview/Cat_Stretch_38081/resolution_1280x800');
+  background-repeat: no-repeat;
 }
 
 hr {
   display: none;
 }
-/*section {
-  border: 3px solid purple;
-}
-div {
-  border: 1px solid red;
-}*/
+
 div.stretch-info {
   width: auto;
   height: 47px;
@@ -26,6 +22,7 @@ a {
   text-decoration: none;
   color: pink;
 }
+
 h1 {
   text-align: center;
   font-size: 40pt;
@@ -41,21 +38,36 @@ h2 {
 }
 
 #session {
-  background-color: rgb(156, 156, 255);
+  background-color: rgba(156, 156, 255, 0.8);
   border: 3px solid purple;
-  padding: 20px;
-  padding-top: 20px;
-  border-radius: -5px;
-  box-shadow: 4px 4px 6px;
-  line-height: 1.2;
+  /* padding: 20px; */
+  padding-left: 30px;
+  padding-right: 30px;
+  padding-top: 17px;
+  padding-bottom: 20px;
+  margin: 0px -20px;
+  box-shadow: 6px 6px 10px black;
+  line-height: 1.3;
   box-sizing: border-box;
-  border-radius: 27px;
+  /* border-radius: 27px; */
   height: auto;
+}
+
+#session button {
+  width: 100px;
+  position: absolute;
+  display: inline-block;
+  background-color: rgb(202, 145, 255);
+}
+
+button#login {
+  position:  relative;
 }
 
 #session #user-nav {
   height: 35px;
 }
+
 #session p {
   font-size: 15pt;
   color: white;
@@ -106,8 +118,9 @@ h2 {
   margin: 19px;
   width: auto;
   padding: 30px;
-  top: 177px;
-  background-color: rgb(96, 68, 101);
+  top: 160px;
+  left: 50px;
+  background-color: rgba(96, 68, 101, 0.95);
   color: white;
   text-shadow: 1px 1px 3px black;
   z-index: 2;
@@ -117,14 +130,19 @@ h2 {
 }
 
 #playback {
-  font-size: 150px;
+  z-index: 3;
+  top: -135px;
+  position: relative;
+  font-size: 171px;
   text-align: center;
   margin: 0 auto;
   width: 300px;
-  height: 200px;
-  color: purple;
-  background-color: cornflowerblue;
-  border: 3px solid purple;
+  height: 150px;
+  color: magenta;
+  background-color: rgba(33, 53, 91, .95);
+  box-shadow: 21px 21px 45px black;
+  border: 8px solid white;
+  border-radius: 35px;
 }
 
 #login-username, #login-password, #login {
@@ -144,56 +162,42 @@ button {
   box-shadow: 2px 2px 5px black;
 }
 
-button.remove-stretch {}
-
-button.remove-stretch {}
-
-button.remove-stretch {}
-
-button.remove-stretch {}
-
-#session button {
-  width: 100px;
-}
 button#new-routine {
-  position: absolute;
   left: 30px;
-  display: inline-block;
-  background-color: rgb(202, 145, 255);
+
 }
 button#show-all-routines {
-  position: absolute;
   left: 140px; 
-  display: inline-block;
-  background-color: rgb(202, 145, 255);
 }
+
 button#logout {
-  position: absolute;
   right: 30px;
-  display: inline-block;
-  background-color: rgb(202, 145, 255);
 }
+
 button#show-all-stretches {
-  position: absolute;
   right: 140px;
-  display: inline-block;
-  background-color: rgb(202, 145, 255);
 }
 
+.error {
+  color: red;
+  font-style: bold;
+}
 
-button.play-routine, button.edit-routine {
-  height: 25px;
-  background-color: orange;
+li {
+  list-style: none;
 }
 
 button.add-stretch {
   height: 25px;
+  width: 45px;
   background-color: rgba(13, 79, 17, 0.41);
   position: relative;
 }
+
 button.remove-stretch {
   height: 25px;
 }
+
 input {
   height: 40px;
   padding: 0 0 0 10px;
@@ -202,13 +206,11 @@ input {
 
 p, span {
   margin: 5px 0px;
-  /* line-height: 2.2; */
   font-size: 12pt;
 }
 
 p.routine-name {
   font-size: 14pt;
-
 }
 
 p.routine-description {
@@ -217,14 +219,22 @@ p.routine-description {
 
 .routine {
   height: 100px;
-  background-color: rgb(255, 255, 136);
+  background-color: rgba(255, 255, 136, .90);
   margin: 10px 0px;
   border-radius: 16px;
   overflow: hidden;
   box-shadow: 2px 2px 4px black;
   color: rgb(182, 118, 0);
   border: 2px solid orange;
+  overflow: scroll;
+  width: 95%;
 }
+
+.routine button {
+   height: 25px;
+  background-color: orange;
+}
+
 .routine-info {
   padding: 10px;
 }
@@ -236,7 +246,7 @@ p.routine-description {
 
 .stretch-preview {
   height: 80px;
-  background-color: rgb(255, 169, 169);
+  background-color: rgba(255, 169, 169, .95);
   margin: 10px 0px;
   border-radius: 16px;
   overflow: hidden;
@@ -245,25 +255,29 @@ p.routine-description {
   font-size: 14pt;
   text-align: center;
   border: 3px solid rgb(182, 55, 0);
+  width: 95%;
 }
+
 .stretch-to-add {
   height: 80px;
-  background-color: rgb(117, 208, 125);
+  background-color: rgba(117, 208, 125, 0.90);
   border:  3px solid;
   color: darkgreen;
   margin: 10px 0px;
   border-radius: 16px;
   overflow: hidden;
-  box-shadow: 2px 2px 4px black);
+  box-shadow: 2px 2px 4px black;
   color: rgb(13, 79, 17);
   font-size: 14pt;
   text-align: center;
+  width: 95%;
 }
 
 .stretch-info {
   position: relative;
 
 }
+
 .close-link {
   left: -10px;
   top: -10px;

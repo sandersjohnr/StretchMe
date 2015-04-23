@@ -18,7 +18,13 @@ App.Views.StretchToAdd = Backbone.View.extend({
     });
   },
 
+  showModal: function() {
+    App.stretchModal.setStretch(this.model);
+    App.stretchModal.showModal();
+  },
+  
   events: {
+    'click .stretch-info' : 'showModal',
     'click .add-stretch': 'addStretchToRoutine'
   }
 

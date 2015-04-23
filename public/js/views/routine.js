@@ -20,9 +20,15 @@ App.Views.Routine = Backbone.View.extend({
     App.playView.setStretches(this.collection);
   },
 
+  deleteRoutine: function() {
+    this.model.destroy();
+    
+  },
+
   events: {
     'click .routine-info' : 'setStretchListView',
-    'click .play-routine' : 'playRoutine'
+    'click .play-routine' : 'playRoutine',
+    'click .delete-routine' : 'deleteRoutine'
   }
 
 });

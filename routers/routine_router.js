@@ -66,6 +66,19 @@ routineRouter.put('/:id', function (req, res) {
   });
 });
 
+// DELETE ROUTINE #########################################
+routineRouter.delete('/:id', function (req, res) {
+  Routine
+  .findOne(req.params.id)
+  .then(function (routine) {
+    routine
+    .destroy()
+    .then(function (routine) {
+      res.send(routine);
+    });
+  });
+});
+
 // GET STRETCHES BY ROUTINE #########################################
 
 routineRouter.get('/:id/stretches', function (req, res) {

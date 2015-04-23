@@ -3,19 +3,6 @@ var models  = require('./models'),
     Routine = models.routines,
     Stretch = models.stretches;
 
-// var users = [
-//   {
-//     name: 'bobojones',
-//     password_digest: '$2a$10$mKNtZmDk7UZS7WoPk7zf.eS4AewqmpNxd2kgWvFNX6JMhOmO8sWky'
-//   }
-// ];
-// var routines = [
-//   {
-//     name: 'Mondaymorning',
-//     description: 'Hamstring stretches'
-//   }
-// ];
-
 var stretches = [
   {
     name: 'Hamstring Stretch',
@@ -24,7 +11,7 @@ var stretches = [
     both_sides: true, 
     intro: 'Lay down on your mat.', 
     instruction: 'Begin on your back with your hip and knee bent. Place a belt around your foot. Pull foot towards head until a stretch is felt in the hamstring. Then switch legs. Keep opposite leg flat on surface.',
-    setup_time: 10,
+    setup_time: 20,
     rep_time: 45, 
     rep_num: 2,
     media_url: 'https://www.youtube.com/watch?v=hfvd04VyXbs'
@@ -39,7 +26,7 @@ var stretches = [
     setup_time: 20,
     rep_time: 120, 
     rep_num: 1,
-    media_url: 'https://www.youtube.com/watch?v=hfvd04VyXbs'
+    media_url: 'https://www.youtube.com/embed/8wz23ONDzUc'
   },
   {
     name: 'Piriformis Stretch',
@@ -51,10 +38,10 @@ var stretches = [
     setup_time: 10,
     rep_time: 45, 
     rep_num: 2,
-    media_url: '' 
+    media_url: 'https://www.youtube.com/embed/eKp2f5-jRbI' 
   },
   {
-    name: 'Glute Medium Stretch',
+    name: 'Gluteus Medius Stretch',
     band: false,
     roller: false,
     both_sides: true, 
@@ -63,19 +50,19 @@ var stretches = [
     setup_time: 10,
     rep_time: 45, 
     rep_num: 2,
-    media_url: '' 
+    media_url: 'https://www.youtube.com/embed/RTqqiy7cUL0' 
   },
   {
-    name: 'Lower trunk rotations',
+    name: 'Lower Trunk Rotations',
     band: false,
     roller: false,
     both_sides: false, 
     intro: 'Lay down on your mat', 
     instruction: 'Lying on your back with your knees bent, gently move your knees side to side',
-    setup_time: 20,
+    setup_time: 10,
     rep_time: 5, 
     rep_num: 15,
-    media_url: ''
+    media_url: 'https://www.youtube.com/embed/G-sSA5dqpdc'
   },
   {
     name: 'Hip Flexor Stretch',
@@ -84,10 +71,10 @@ var stretches = [
     both_sides: false, 
     intro: 'Get up on a raised surface', 
     instruction: 'Bend one knee keeping your foot on the table. Drop your other lef off the side of the table. Use a stretching strap to pull your ankle in towards your buttock',
-    setup_time: 20,
+    setup_time: 10,
     rep_time: 45, 
     rep_num: 2,
-    media_url: ''
+    media_url: 'https://www.youtube.com/embed/gMEGo4d_-Vg'
   },
   {
     name: 'Groin Stretch',
@@ -99,7 +86,7 @@ var stretches = [
     setup_time: 10,
     rep_time: 45, 
     rep_num: 2,
-    media_url: ''
+    media_url: "https://www.youtube.com/embed/i1rQgNrh_f8"
   },
   {
     name: 'Pelvic Tilt',
@@ -123,7 +110,7 @@ var stretches = [
     setup_time: 10,
     rep_time: 5, 
     rep_num: 15,
-    media_url: ''
+    media_url: 'https://www.youtube.com/embed/gikdpm9oNnk'
   },
   {
     name: 'Muscle Energy',
@@ -135,7 +122,7 @@ var stretches = [
     setup_time: 10,
     rep_time: 5, 
     rep_num: 15,
-    media_url: ''
+    media_url: 'https://www.youtube.com/embed/_NloUYVLoFI'
   }
 ];
 
@@ -159,59 +146,3 @@ var seedDatabase = function() {
 
 seedDatabase();
 
-
-/*
-
-var seedDatabase = function () {
-  users.forEach( function (userData) {
-    User.create({
-      username: userData.username,
-      password_digest: userData.password_digest
-    })
-    .then(function(user) {
-      routines.forEach( function (routineData) {
-        Routine.create({
-          name: routineData.name,
-          description: routineData.description,
-          user_id: user.id
-        })
-        .then(function(routine) {
-          stretches.forEach( function (stretchData) {
-            Stretch.create({
-              name: stretchData.name,
-              band: stretchData.band,
-              roller: stretchData.roller,
-              intro: stretchData.intro, 
-              instruction: stretchData.instruction,
-              setup_time: stretchData.setup_time,
-              rep_time: stretchData.rep_time, 
-              rep_num: stretchData.rep_num,
-              both_sides: stretchData.both_sides, 
-              media_url: stretchData.media_url
-            });
-          });
-        });
-      });
-    });
-  });
-};
-*/
-
-
-/*
-module.exports = function (done) {
-  User.destroy({ truncate: true}).then(function() {
-    Routine.destroy({ truncate: true}).then(function() {
-      Stretch.destroy({ truncate: true}).then(function() {
-        User.bulkCreate(users).then(function() {
-          Routine.bulkCreate(routines).then(function() {
-            Stretch.bulkCreate(stretches).then(function() {
-              done();
-            });
-          });
-        });
-      });
-    });
-  });
-};
-*/

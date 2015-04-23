@@ -98,7 +98,7 @@
         <p class="routine-description">{{ description }}</p>
       </div>
       <div class="routine-nav">
-        <!-- <button class="edit-routine">Edit</button> -->
+        <button class="delete-routine">Delete</button>
         <button class="play-routine">Play</button>
         
       </div>
@@ -137,7 +137,7 @@
 
   <template id="stretch-modal-template">
     <div>
-      <p class="stretch-name">{{ name }}</p>
+      <h2 class="stretch-name">{{ name }}</h2>
       <div class="stretch-equipment">
         {{#if band}}
           <p>Requires a strap.</p>
@@ -153,7 +153,7 @@
       <p>Seconds per Rep: {{rep_time}}</p>
       <p class="stretch-directions">{{ instruction }}</p>
       <div class="video">
-        <iframe width="560" height="315" src="https://www.youtube.com/embed/hfvd04VyXbs" frameborder="0" allowfullscreen></iframe>
+        <iframe width="560" height="315" src="https://www.youtube.com/embed/hfvd04VyXbs" frameborder="0" autoplay="1" controls="2" allowfullscreen></iframe>
       </div>
     </div>
   </template>

@@ -20,6 +20,7 @@ App.Views.User = Backbone.View.extend({
         $('#all-stretches').empty();
         $('#playback').hide();
         this.renderSession(user);
+        App.stretchModal.hideModal();
         App.routineList.fetchAndShowRoutines();
       } else {
         this.$el.html( this.loginTemplate() );
@@ -99,14 +100,14 @@ App.Views.User = Backbone.View.extend({
   },
 
   events: {
-    'click #signup-link'  : 'renderSignup',
-    'click #login-link'   : 'checkSession',
-    'click #signup'       : 'signup',
-    'click #logout'       : 'logout',
-    'click #login'        : 'login',
-    'click #show-all-routines' : 'checkSession',
-    'click #show-all-stretches': 'showAllStretches',
-    'click #new-routine' : 'newRoutine',
+    'click #signup-link'        : 'renderSignup',
+    'click #login-link'         : 'checkSession',
+    'click #signup'             : 'signup',
+    'click #logout'             : 'logout',
+    'click #login'              : 'login',
+    'click #show-all-routines'  : 'checkSession',
+    'click #show-all-stretches' : 'showAllStretches',
+    'click #new-routine'        : 'newRoutine',
     'keypress #login-username, #login-password' : 'keypressLogin'
   }
 
