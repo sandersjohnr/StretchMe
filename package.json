@@ -31,6 +31,7 @@
     "pg-hstore": "^2.3.2",
     "request": "^2.55.0",
     "sequelize": "^2.0.6",
+    "sequelize-cli": "^1.7.0",
     "tts-speak": "^0.9.6",
     "tts.js": "^0.1.0",
     "util": "^0.10.3"
