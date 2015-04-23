@@ -13,12 +13,13 @@ App.Views.User = Backbone.View.extend({
   },
 
   checkSession: function() {
+    $('#playback').hide();
+    $('#left-container').empty();
+    $('#right-container').empty();
+    $('#all-stretches').empty();
+    
     $.get('/current_user').done( function (user) {
       if (user) {
-        $('#left-container').empty();
-        $('#right-container').empty();
-        $('#all-stretches').empty();
-        $('#playback').hide();
         this.renderSession(user);
         App.stretchModal.hideModal();
         App.routineList.fetchAndShowRoutines();
