@@ -13,7 +13,7 @@ utter('Welcome to stretch me bro!')
 
 $(function() {
 
-  $.post('/sessions', {username: 'sanders', password: 'resipsa'}).done(function(){
+  // $.post('/sessions', {username: 'sanders', password: 'resipsa'}).done(function(){
 
     App.userView     = new App.Views.User();
     App.playView     = new App.Views.PlayRoutine({ collection: new App.Collections.Stretch });
@@ -24,7 +24,7 @@ $(function() {
     App.allStretches = new App.Views.StretchAll({ collection: new App.Collections.StretchesAll });
 
 
-  });
+  // });
   
 });
 
