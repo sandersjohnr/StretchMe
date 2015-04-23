@@ -44,7 +44,10 @@ routineRouter.post('/', /*authenticate, restrictAccess, */function (req, res) {
 // GET ROUTINE BY ID ##########################################
 routineRouter.get('/:id', function (req, res) {
   Routine
-  .findOne(req.params.id, { include: [Stretch] })
+  .findOne({
+    where: { id: req.params.id},
+    include: [Stretch]
+  })
   .then(function (routine) {
     res.send(routine);
   });
@@ -65,17 +68,17 @@ routineRouter.put('/:id', function (req, res) {
 
 // GET STRETCHES BY ROUTINE #########################################
 
-// routineRouter.get('/:id/stretches', function (req, res) {
-//   Routine
-//   .findOne(req.params.id)
-//   .then(function (routine) {
-//     routine
-//     .findStretch()
-//     .then(function(stretches) {
-//       res.send(stretches)
-//     });
-//   });
-// });
+routineRouter.get('/:id/stretches', function (req, res) {
+  Routine
+  .findOne({ 
+    where: { id: req.params.id }, 
+    include: [Stretch] 
+  })
+  .then(function (routine) {
+    res.send(routine.responseJSON.stretches);
+    
+  });
+});
 
 
 // ADD EXISTING STRETCH TO PARTICULAR ROUTINE ##################################

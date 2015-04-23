@@ -21,7 +21,6 @@ App.Views.StretchModal = Backbone.View.extend({
 
   hideModal: function() {
     this.$el.fadeOut(200);
-    this.$('iframe').attr('src', '');
   },
 
   events: {
