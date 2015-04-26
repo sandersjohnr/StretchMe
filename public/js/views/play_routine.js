@@ -1,6 +1,6 @@
 App.Views.PlayRoutine = Backbone.View.extend({
   el: '#playback',
-  
+
   initialize: function() {
     this.listenTo(this.collection, 'reset', this.start);
   },
@@ -93,7 +93,7 @@ App.Views.PlayRoutine = Backbone.View.extend({
         }
         if (repNum === 1 && repTime >= 30) announceRemaining(timeRemaining);
         checkZero(timeRemaining);
-      }, 1000);
+      }, 250);
       
     };
     
