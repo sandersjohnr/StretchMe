@@ -111,7 +111,6 @@ app.post('/sessions', function (req, res) {
   });
 });
 
-
 app.get('/current_user', function (req,res) {
   User
   .findOne(req.session.currentUser)
@@ -139,7 +138,7 @@ app.delete('/users/:id', function (req, res) {
 
 // Start server
 app.listen( process.env.PORT || 3000, function () {
-    console.log('Running on 3000!');
+  console.log('Running on 3000!');
 });
 
 // Export app module

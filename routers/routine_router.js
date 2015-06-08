@@ -111,7 +111,7 @@ routineRouter.post('/:routineID/add_stretch/:stretchID', function (req, res) {
   });
 });
 
-// REMOVE  STRETCH FROM PARTICULAR ROUTINE ##################################
+// REMOVE STRETCH FROM PARTICULAR ROUTINE ##################################
 routineRouter.post('/:routineID/remove_stretch/:stretchID', function (req, res) {
   Routine
   .findOne(req.params.routineID, { include: [Stretch] })

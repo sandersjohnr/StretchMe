@@ -28,10 +28,3 @@ voiceRouter.get('/:text', function (req, res) {
 
 // Export Router
 module.exports = voiceRouter;
-
-/*
-request({url:url, qs:propertiesObject}, function(err, response, body) {
-  if(err) { console.log(err); return; }
-  console.log("Get response: " + response.statusCode);
-});
-*/

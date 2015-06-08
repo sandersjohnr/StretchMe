@@ -9,24 +9,5 @@ var express       = require('express'),
 
 var userRouter = express.Router();
 
-// var app = express();
-// app.use('bcrypt');
-// app.use(session({
-//   secret: 'twenty-three skidoo',
-//   resave: false,
-//   saveUninitialized: true
-// }));
-
-// userRouter.get('/', function (req, res) {
-//   User
-//   .findAll()
-//   .then(function (users) {
-//     res.send(users);
-//   });
-// });
-
-
-// userRouter.post()
-
 // export module
 module.exports = userRouter;

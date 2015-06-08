@@ -6,7 +6,6 @@ var express       = require('express'),
 
 var stretchRouter = express.Router();
 
-
 stretchRouter.get('/', function (req, res) {
   Stretch
   .findAll({ include: [Routine] })
@@ -34,9 +33,6 @@ stretchRouter.delete('/:id', function (req, res) {
     });
   });
 });
-
-
-
 
 // export module
 module.exports = stretchRouter;
