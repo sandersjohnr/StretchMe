@@ -29,7 +29,7 @@ routineRouter.get('/', function (req, res) {
 });
 
 // CREATE NEW ROUTINE #########################################
-routineRouter.post('/', /*authenticate, restrictAccess, */function (req, res) {
+routineRouter.post('/', /*authenticate, restrictAccess,*/ function (req, res) {
   Routine
   .create({
     name: req.body.name,
@@ -80,7 +80,6 @@ routineRouter.delete('/:id', function (req, res) {
 });
 
 // GET STRETCHES BY ROUTINE #########################################
-
 routineRouter.get('/:id/stretches', function (req, res) {
   Routine
   .findOne({ 
@@ -92,7 +91,6 @@ routineRouter.get('/:id/stretches', function (req, res) {
     
   });
 });
-
 
 // ADD EXISTING STRETCH TO PARTICULAR ROUTINE ##################################
 routineRouter.post('/:routineID/add_stretch/:stretchID', function (req, res) {
