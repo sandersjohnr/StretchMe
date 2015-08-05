@@ -46,7 +46,7 @@ App.Views.RoutineList = Backbone.View.extend({
   },
 
   events: {
-    'click #create-routine'    : 'createRoutine'
+    'click #create-routine' : 'createRoutine'
   }
 
 });

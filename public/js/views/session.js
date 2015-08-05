@@ -1,5 +1,4 @@
 App.Views.User = Backbone.View.extend({
-  
   el: '#session',
 
   initialize: function() {
@@ -17,13 +16,13 @@ App.Views.User = Backbone.View.extend({
     $('#right-container').empty();
     $('#all-stretches').empty();
 
-    $.get('/current_user').done( function (user) {
+    $.get('/current_user').done(function(user) {
       if (user) {
         this.renderSession(user);
         App.stretchModal.hideModal();
         App.routineList.fetchAndShowRoutines();
       } else {
-        this.$el.html( this.loginTemplate() );
+        this.$el.html(this.loginTemplate());
       }
     }.bind(this));
   },
@@ -88,7 +87,7 @@ App.Views.User = Backbone.View.extend({
   errorHandling: function (response) {
     $('.error').remove();
     var err = response.responseJSON;
-    this.$el.append($('<li class="error">' + err.msg + '</li>'))
+    this.$el.append($('<li class="error">' + err.msg + '</li>'));
   },
 
   showAllStretches: function() {

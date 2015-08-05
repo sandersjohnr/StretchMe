@@ -17,11 +17,11 @@ App.Views.StretchPreview = Backbone.View.extend({
   removeStretch: function() {
     var stretchID = this.$('.stretch-info').data('id');
     var routineID = $('.routine-info').data('id');
-    $.post('/routines/'+routineID+'/remove_stretch/'+stretchID).done (function(){
+    $.post('/routines/'+ routineID +'/remove_stretch/'+ stretchID).done(function(){
       App.routineList.fetchAndShowRoutines();
       $.get('/routines/' + routineID).done(function(routine) {
         App.stretchList.collection.reset();
-      })
+      });
     });
   },
 

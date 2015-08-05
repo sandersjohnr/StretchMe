@@ -28,5 +28,4 @@ App.Views.StretchModal = Backbone.View.extend({
   events: {
     'click' : 'hideModal'
   }
-
 });

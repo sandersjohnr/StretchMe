@@ -1,7 +1,7 @@
 var express       = require('express'),
-    models        = require('../models'),
-    // session       = require('express-session'),
-    User          = models.users,
+    models        = require('../models');
+    
+var User          = models.users,
     Routine       = models.routines,
     Stretch       = models.stretches;
 
@@ -29,7 +29,7 @@ routineRouter.get('/', function (req, res) {
 });
 
 // CREATE NEW ROUTINE #########################################
-routineRouter.post('/', /*authenticate, restrictAccess,*/ function (req, res) {
+routineRouter.post('/', /*authenticate, restrictAccess, */function (req, res) {
   Routine
   .create({
     name: req.body.name,
@@ -126,6 +126,8 @@ routineRouter.post('/:routineID/remove_stretch/:stretchID', function (req, res) 
   });
 });
 
+
+/*
 // CREATE NEW STRETCH FOR PARTICULAR ROUTINE ##################################
 routineRouter.post('/:id/new_stretch', function (req, res) {
   Routine
@@ -150,7 +152,7 @@ routineRouter.post('/:id/new_stretch', function (req, res) {
     });
   });
 });
-
+*/
 
 // export module
 module.exports = routineRouter;

@@ -11,10 +11,10 @@ App.Views.StretchToAdd = Backbone.View.extend({
   addStretchToRoutine: function() {
     var stretchID = this.$('.stretch-info').data('id');
     var routineID = $('.routine-info').data('id');
-
+    
       cl(routineID, stretchID)
     $.post('/routines/' + routineID + '/add_stretch/' + stretchID).done(function () {
-      App.routineList.fetchAndShowRoutines();
+      // App.routineList.fetchAndShowRoutines();
     });
   },
 

@@ -4,7 +4,8 @@ App.Views.StretchList = Backbone.View.extend({
 
   initialize: function(routineModel) {
     this.listenTo( this.collection, 'reset', this.renderStretchList);
-    this.listenTo( this.collection, 'change' , this.renderStretchList);
+    this.listenTo( this.collection, 'add' , this.renderStretchList);
+    this.listenTo( this.collection, 'remove', this.renderStretchList);
   },
 
   renderStretchList: function() {

@@ -6,8 +6,8 @@ App.Views.Routine = Backbone.View.extend({
   },
 
   render: function() {
-    cl(this.model)
     this.$el.html(this.routineTemplate(this.model.toJSON()));
+    return this;
   },
 
   setStretchListView: function() {
@@ -22,6 +22,10 @@ App.Views.Routine = Backbone.View.extend({
 
   deleteRoutine: function() {
     this.model.destroy();
+    // $.ajax({
+    //   url: '/routines/'+this.model.id,
+    //   method: 'DELETE'
+    // }).done( App.routineList.fetchAndShowRoutines );
   },
 
   events: {
